@@ -1,0 +1,49 @@
+---
+title: "edX Linux"
+output: 
+  html_document: 
+    theme: journal
+---
+
+## Introduction
+This comes from the [edX class](https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS101x.2+1T2015/courseware)
+
+List of commands
+1. `apt` - advanced package tool
+
+The main sources of information
+1. Man pages
+2. Command help
+3. GNU info
+4. Other
+5. [https://www.gentoo.org/doc/en/](https://www.gentoo.org/doc/en/)
+
+### Man pages
+Various options
+1. `-f` will dispaly all pages that contain the word in the argument
+2. `-k` will display all discussion even if the word is not used
+
+Man pages are divided into 9 chapters. The chapter number can be forced by the number.  The `a` parameter will display all manual pages with the given name.
+* `man 3 printf`
+* `man -a printf`
+
+###GNU information system
+This is more free-form and open to linkages. 
+
+Typing `info` with no arguments in the command line gives a list of topics. `info <topic name` will give information on the topic. To negotiate the page
+* q will quit
+* h will help
+* enter to select
+* n go to next node
+* p go to previous node
+* u one node in the index
+
+### Help command
+Will tend to provide short information.  For example, to find out about manual `man --help`
+
+###Other
+`gnome help` will provide specific help about the particular linux family. 
+
+
+
+

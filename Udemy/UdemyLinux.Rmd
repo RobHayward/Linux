@@ -1,0 +1,13 @@
+---
+title: "Udemy Linux"
+output: 
+  html_document: 
+    theme: journal
+---
+
+## Introduction
+1. sudo allows the use of super user
+2. apt-get will download from internet
+3. apt-get update will update all the existing packages
+4. apt-get package-name will install the package
+5. apt-get remove <package name> will remove the file after the prompt. 
