@@ -71,13 +71,13 @@ img {
 <p>The main sources of information 1. Man pages 2. Command help 3. GNU info 4. Other 5. <a href="https://www.gentoo.org/doc/en/"><a href="https://www.gentoo.org/doc/en/" class="uri">https://www.gentoo.org/doc/en/</a></a></p>
 <div id="man-pages" class="section level3">
 <h3>Man pages</h3>
-<p>Various options 1. <code>-f</code> will dispaly all pages that contain the word in the argument 2. <code>-k</code> will display all discussion even if the word is not used</p>
+<p>Various options 1. <code>-f</code> will dispaly all files that contain the word in the argument 2. <code>-k</code> will display all discussion even if the word is not used</p>
 <p>Man pages are divided into 9 chapters. The chapter number can be forced by the number. The <code>a</code> parameter will display all manual pages with the given name. * <code>man 3 printf</code> * <code>man -a printf</code></p>
 </div>
 <div id="gnu-information-system" class="section level3">
 <h3>GNU information system</h3>
 <p>This is more free-form and open to linkages.</p>
-<p>Typing <code>info</code> with no arguments in the command line gives a list of topics. <code>info &lt;topic name</code> will give information on the topic. To negotiate the page * q will quit * h will help * enter to select * n go to next node * p go to previous node * u one node in the index</p>
+<p>Typing <code>info</code> with no arguments in the command line gives a list of topics. <code>info &lt;topic name</code> will give information on the topic. To negotiate the page * q will quite * h will help * enter to select * n go to next node * p go to previous node * u one node in the index</p>
 </div>
 <div id="help-command" class="section level3">
 <h3>Help command</h3>
@@ -86,6 +86,170 @@ img {
 <div id="other" class="section level3">
 <h3>Other</h3>
 <p><code>gnome help</code> will provide specific help about the particular linux family.</p>
+</div>
+</div>
+<div id="command-line" class="section level2">
+<h2>Command line</h2>
+<p><code>X Window</code> can be turned off. There are 7 <code>virtual terminals</code>. Access by <code>CTRL-ALT-F6</code></p>
+<p>Usually there are three components: command, options and arguments. Options are switches or modifiers. Use <code>sudo service gdm stop</code> to stop the desktop manager.</p>
+<div id="basic-operations" class="section level3">
+<h3>Basic operations</h3>
+<ul>
+<li>cd</li>
+<li>cat</li>
+<li>echo</li>
+<li>ls</li>
+<li>rmdir</li>
+<li>man</li>
+<li>exit</li>
+<li>login</li>
+<li>mkdir</li>
+</ul>
+<p>Best to shutdown with <code>shutdown</code>, the <code>init</code> process will control the shutting down. <code>shutdown -r</code> will reboot. Usually, executable programmes are in <code>/bin/usr/bin/</code> to find where programmes are use <code>which &lt;prog&gt;</code> or <code>whereis &lt;prog&gt;</code>.</p>
+</div>
+<div id="utilities" class="section level3">
+<h3>Utilities</h3>
+<ul>
+<li><code>cd ~</code> move to home directory</li>
+<li><code>cd ..</code> move to parent</li>
+<li><code>cd -</code> move to previous directory</li>
+</ul>
+</div>
+<div id="explore" class="section level3">
+<h3>Explore</h3>
+<ul>
+<li><code>cd/</code> Change to root directory</li>
+<li><code>ls</code> list files and directories</li>
+<li><code>ls -a</code> list all files (including hidden)</li>
+<li><code>tree</code> view of filesystem</li>
+<li><code>ln</code> can create soft or hard links</li>
+</ul>
+<p>Move directories to the stack with <code>pushd .</code> to move to that first entry in the stack type <code>pop</code>. However, it is best to use <code>pushd +1</code> for the first element and <code>pushd + 2</code> for the second element. This will preseve the stack, while <code>pop</code> will clear. Look <a href="http://www.eriwen.com/bash/pushd-and-popd/">here</a></p>
+</div>
+<div id="standard-file-streams" class="section level3">
+<h3>Standard file streams</h3>
+<ul>
+<li>standard input <code>stdin</code></li>
+<li>standard output <code>stdout</code></li>
+<li>standard error <code>stderr</code></li>
+<li>pipe can direct output to a new input</li>
+</ul>
+</div>
+<div id="io-direction" class="section level3">
+<h3>I/O direction</h3>
+<ul>
+<li><code>do_something &lt; input_file</code></li>
+<li><code>do_something &gt; output_file</code></li>
+<li><code>|</code> pipe moves inputs to outputs</li>
+<li><code>locate</code> will search for files</li>
+<li><code>grep</code> can be used to filer files</li>
+<li><code>locate</code> uses the <code>updatedb</code> programme. This can be run once a day but can be initiated at any time</li>
+<li><code>find</code> will find from current directory. <code>-name</code> will find only particular name, <code>-type</code> will find only particular type. ** <code>find -name &quot;.swp&quot; -exec rm {} ':'</code> will remove all the fils with swp extension by sending them to {} to have rm executed on them.</li>
+<li><code>-exec</code> is s modifiction that will allow you to execute commands on the result of the <code>find</code></li>
+</ul>
+</div>
+<div id="matching-files" class="section level3">
+<h3>Matching files</h3>
+<ul>
+<li><code>?</code> match any singe character</li>
+<li><code>*</code> match string of characters</li>
+<li><code>[set]</code> match characters.<br /></li>
+<li><code>[!set]</code> match not characters</li>
+<li><code>-ctime</code> time file was created</li>
+<li><code>-atime</code> time file was accessed</li>
+<li><code>-mtime</code> time files was modified</li>
+</ul>
+</div>
+<div id="working-with-files" class="section level3">
+<h3>Working with files</h3>
+<ul>
+<li><code>cat</code> view short files and link together</li>
+<li><code>tac</code> look file backwards</li>
+<li><code>less</code> view larget file with paging programme (use / to serarch)</li>
+<li><code>tail</code> print last 10 lines.</li>
+<li><code>head</code></li>
+<li><code>touch</code> will modify the file’s timestamp to the current time. Can also be used to create a new file.</li>
+<li><code>rm</code> will remove a file <code>-i</code> interactivey will ask for confirmation for each file.</li>
+</ul>
+</div>
+</div>
+<div id="package-management" class="section level2">
+<h2>Package management</h2>
+<p>The debian family has two levels of package management: the low level <code>dpkg</code> and the high level <code>apt-get</code>. The high level tool will mostly call the low level tool when needed. This is <em>advanced-package-tools</em>.</p>
+<div id="operations" class="section level3">
+<h3>Operations</h3>
+<ul>
+<li>install package: <code>dpkg --install foo.deb</code></li>
+<li>install package dependencies: <code>apt-get install foo</code></li>
+<li>remove package: <code>dpkg --remove foo.deb</code></li>
+<li>remove package dependencies: <code>apt-get autoremove foo</code></li>
+<li>update package: <code>dpkg --install foo.deb</code></li>
+<li>update package and dependencies: <code>apt-get install foo</code></li>
+<li>Update entire system: <code>apt-get dist-upgrade</code></li>
+<li>Show all installed packages: <code>dpkg --list</code></li>
+<li>Get information on package: <code>dpkg --listfiles foo</code></li>
+<li>Show packages named foo: <code>apt-cache serach foo</code></li>
+<li>Show all available packages: <code>apt-cache dumpavail foo</code></li>
+<li>What package is file part of: dpkg –search file`</li>
+</ul>
+</div>
+<div id="user-environment" class="section level3">
+<h3>User environment</h3>
+<p>Identify who is logged on with <code>who</code>. To identify the current user `<code>whoami</code>. <code>who -a</code> gives more details.</p>
+<p>Control of groups is managed through the <code>/etc/group</code> file.</p>
+<p><code>useradd</code> will add a new user. <code>userdel</code> will remove a user. Use the <code>-r</code> option to remove the home directory.</p>
+<p><code>id</code> gives user info.</p>
+<p><code>su</code> substitute or switch user. <code>sudo</code> super user. Configeration files are in <code>etc/sudoers</code>and <code>etc/sudoers.d</code> directory.</p>
+<p>First the <code>/etc/profile</code> is read and then the following files are searched</p>
+<ul>
+<li><code>~/.bash/profile</code></li>
+<li><code>~/.bssh/bash_login</code></li>
+<li><code>~/.profile</code></li>
+</ul>
+</div>
+<div id="environmental-variables" class="section level3">
+<h3>Environmental variables</h3>
+<p>Some can be set by the user. An environemnt variable is a character string that contains information that is used by an application. <code>set</code>, <code>env</code> and <code>export</code> are the ways to view the environment variable.</p>
+<p>The <code>PATH</code> is an ordered list of directories that will be scanned when a command is given. A null directory or <code>./</code> is the current directory.</p>
+<p><strong>Prompt Statement</strong> is used to customise the prompt string. <code>PS1</code> is the primary prompt variable. Changes</p>
+<ul>
+<li><code>\u~</code> User name</li>
+<li><code>\h~</code> host name</li>
+<li><code>\w~</code> current working directory</li>
+<li><code>\!~</code> History number of command</li>
+<li><code>\d~</code> Date</li>
+</ul>
+</div>
+<div id="command-history" class="section level3">
+<h3>Command history</h3>
+<p>This is kept in <code>~/.bash_histry</code>. It is possible to use <code>!!</code> or bang-bang to execute previous command. <code>CTRL-R</code> search history.</p>
+<p>Keyboard shortcuts</p>
+<ul>
+<li>CTRL-L: Clears the screen</li>
+<li>CTRL-D: Exits current shell</li>
+<li>CTRL-Z: Puts current process in suspended background</li>
+<li>CTRL-C: Kills current process</li>
+<li>CTRL-H: Same as backspace</li>
+<li>CTRL-A: Goes to the beginning of the line</li>
+<li>CTRL-W: Deletes the word before the cursor</li>
+<li>CTRL-U: Deletes from beginning of line to cursor</li>
+<li>CTRL-E: Goes to the end of the line</li>
+<li>Tab: Auto complete</li>
+</ul>
+<p>Changes to file ownership.</p>
+<ul>
+<li><code>chown</code> change user ownership</li>
+<li><code>chgrp</code> change group ownership</li>
+<li><code>chmod</code> modify owner, user or group</li>
+</ul>
+<p>The codes for permissions</p>
+<ul>
+<li>4 for read</li>
+<li>2 for write</li>
+<li>1 for execute</li>
+</ul>
+<p>So 6 for read and write</p>
+<p><code>chmod 755 test1</code> would read and execute acess to all and read, write and execute access to owner.</p>
 </div>
 </div>
 

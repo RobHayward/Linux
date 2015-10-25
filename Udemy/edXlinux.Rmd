@@ -20,7 +20,7 @@ The main sources of information
 
 ### Man pages
 Various options
-1. `-f` will dispaly all pages that contain the word in the argument
+1. `-f` will dispaly all files that contain the word in the argument
 2. `-k` will display all discussion even if the word is not used
 
 Man pages are divided into 9 chapters. The chapter number can be forced by the number.  The `a` parameter will display all manual pages with the given name.
@@ -31,7 +31,7 @@ Man pages are divided into 9 chapters. The chapter number can be forced by the n
 This is more free-form and open to linkages. 
 
 Typing `info` with no arguments in the command line gives a list of topics. `info <topic name` will give information on the topic. To negotiate the page
-* q will quit
+* q will quite
 * h will help
 * enter to select
 * n go to next node
@@ -43,6 +43,157 @@ Will tend to provide short information.  For example, to find out about manual `
 
 ###Other
 `gnome help` will provide specific help about the particular linux family. 
+
+##Command line
+`X Window` can be turned off. There are 7 `virtual terminals`.  Access by `CTRL-ALT-F6`
+
+Usually there are three components: command, options and arguments.  Options are switches or modifiers. Use `sudo service gdm stop` to stop the desktop manager.
+
+###Basic operations
+* cd
+* cat
+* echo
+* ls
+* rmdir
+* man
+* exit
+* login
+* mkdir
+
+Best to shutdown with `shutdown`, the `init` process will control the shutting down. `shutdown -r` will reboot. Usually, executable programmes are in `/bin/usr/bin/` to find where programmes are use `which <prog>` or `whereis <prog>`.  
+
+###Utilities
+* `cd ~` move to home directory
+* `cd ..` move to parent
+* `cd - ` move to previous directory
+
+###Explore 
+* `cd/` Change to root directory
+* `ls` list files and directories
+* `ls -a ` list all files (including hidden)
+* `tree` view of filesystem
+* `ln` can create soft or hard links
+
+Move directories to the stack with `pushd .` to move to that first entry in the stack type `pop`.  However, it is best to use `pushd +1` for the first element and `pushd + 2` for the second element.  This will preseve the stack, while `pop` will clear.  Look [here](http://www.eriwen.com/bash/pushd-and-popd/)
+
+###Standard file streams
+* standard input `stdin`
+* standard output `stdout`
+* standard error `stderr`
+* pipe can direct output to a new input
+
+###I/O direction
+* `do_something < input_file`
+* `do_something > output_file`
+* `|` pipe moves inputs to outputs
+* `locate` will search for files
+* `grep` can be used to filer files
+* `locate` uses the `updatedb` programme.  This can be run once a day but can be initiated 
+at any time
+* `find` will find from current directory. `-name` will find only particular name, `-type` will find only particular type.
+** `find -name ".swp" -exec rm {} ':'` will remove all the fils with swp extension by sending them to {} to have rm executed on them.
+* `-exec` is s modifiction that will allow you to execute commands on the result of the `find`
+
+###Matching files
+* `?` match any singe character
+* `*` match string of characters
+* `[set]` match characters.  
+* `[!set]` match not characters
+* `-ctime` time file was created
+* `-atime` time file was accessed
+* `-mtime` time files was modified
+
+###Working with files
+* `cat` view short files and link together
+* `tac` look file backwards
+* `less` view larget file with paging programme (use / to serarch)
+* `tail` print last 10 lines. 
+* `head`
+* `touch` will modify the file's timestamp to the current time.  Can also be used to create a new file. 
+* `rm` will remove a file `-i` interactivey will ask for confirmation for each file. 
+
+##Package management
+The debian family has two levels of package management: the low level `dpkg` and the high level `apt-get`. The high level tool will mostly call the low level tool when needed. This is *advanced-package-tools*. 
+
+### Operations
+* install package: `dpkg --install foo.deb`
+* install package dependencies: `apt-get install foo`
+* remove package: `dpkg --remove foo.deb`
+* remove package dependencies: `apt-get autoremove foo`
+* update package: `dpkg --install foo.deb`
+* update package and dependencies: `apt-get install foo`
+* Update entire system: `apt-get dist-upgrade`
+* Show all installed packages: `dpkg --list`
+* Get information on package: `dpkg --listfiles foo`
+* Show packages named foo: `apt-cache serach foo`
+* Show all available packages: `apt-cache dumpavail foo`
+* What package is file part of: dpkg --search file`
+
+### User environment
+Identify who is logged on with `who`. To identify the current user ``whoami`. `who -a`  gives more details. 
+
+Control of groups is managed through the `/etc/group` file. 
+
+`useradd` will add a new user. `userdel` will remove a user. Use the `-r` option to remove the home directory.
+
+`id` gives user info. 
+
+`su` substitute or switch user. `sudo` super user. Configeration files are in `etc/sudoers`and `etc/sudoers.d` directory. 
+
+First the `/etc/profile` is read and then the following files are searched 
+
+* `~/.bash/profile`
+* `~/.bssh/bash_login`
+* `~/.profile`
+
+###Environmental variables
+Some can be set by the user. An environemnt variable is a character string that contains information that is used by an application. `set`, `env` and `export` are the ways to view the environment variable. 
+
+The `PATH` is an ordered list of directories that will be scanned when a command is given. A null directory or `./` is the current directory. 
+
+**Prompt Statement** is used to customise the prompt string. `PS1` is the primary prompt variable. Changes
+
+* `\u~` User name
+* `\h~` host name
+* `\w~` current working directory
+* `\!~` History number of command
+* `\d~` Date
+
+### Command history
+This is kept in `~/.bash_histry`.  It is possible to use `!!` or bang-bang to execute previous command. `CTRL-R` search history. 
+
+Keyboard shortcuts
+
+* CTRL-L: Clears the screen
+* CTRL-D: Exits current shell
+* CTRL-Z: Puts current process in suspended background
+* CTRL-C: Kills current process
+* CTRL-H: Same as backspace
+* CTRL-A: Goes to the beginning of the line
+* CTRL-W: Deletes the word before the cursor
+* CTRL-U: Deletes from beginning of line to cursor
+* CTRL-E: Goes to the end of the line
+* Tab: Auto complete
+
+Changes to file ownership. 
+
+* `chown` change user ownership
+* `chgrp` change group ownership
+* `chmod` modify owner, user or group
+
+The codes for permissions
+ 
+* 4 for read
+* 2 for write
+* 1 for execute
+
+So 6 for read and write
+
+`chmod 755 test1` would read and execute acess to all and read, write and execute access to owner. 
+
+
+
+
 
 
 
