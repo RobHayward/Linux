@@ -252,6 +252,36 @@ img {
 <p><code>chmod 755 test1</code> would read and execute acess to all and read, write and execute access to owner.</p>
 </div>
 </div>
+<div id="networking" class="section level2">
+<h2>Networking</h2>
+<p>Devices in a network need a unique network address identifier. This is known as IP (Internet protocol address). Bit-size packets with data buffers and headers are exchanged. There are two types of IP address</p>
+<ul>
+<li>IPv4: uses 32 bits. Divided into 4 8-bit sections called <em>octets</em>.</li>
+<li>IPv6: uses 128 bits.</li>
+</ul>
+<p>There are five classes of network address: A, B and C have two components: Network address (Net ID) and Host address (Host ID). D is for special multicast and E is reserved for future use.</p>
+<ul>
+<li><p>Class A uses the first octet as the Net ID and the rest as Host ID. The first bit of the first Octet is set to zero and 000000 and 111111 are reserved, so there are only 126 Class A networks available. Each class A network can have upto 16.7 million hosts. The range of host addresses is from 1.0.0.0 to 127.255.255.255 (note the value of an octet or 8-bits can range from 0 to 255)</p></li>
+<li><p>Class B address use the first two octets as theri Net ID and the last two as the Host ID. The first two digits of the rist octet are always 1,0 so there is maximum of 16,384 (4 bits) Class B networks. The rist octet runs from 128 to 191 so the range of host addresses is 128.0.0.0 to 191.255.255.255.</p></li>
+<li><p>Class C addresses use the first three octets. The first two digits are 110. The first octet has values from 192 to 223. They range from 192.0.0.0 to 223.255.255.255</p></li>
+</ul>
+<p>IP addresses can be asigned manually or dunamically. The Dynamic Host Configuration Protocol (DHCP) is used to assignm IP addresses. <strong>ipcal</strong> can be used to calcualte manufal IP addresse.</p>
+<p><strong>Name Resolution</strong> is used to convert numerical IP address values to human-readable format known as <strong>hostname</strong>. For example, 140.211.169.4 is the numerical IP address for <strong>linuxfondation.org</strong>. The <strong>localhost</strong> is associated with the IP address 127.0.0.1 and descibes the machine that you are on.</p>
+<p><code>cat /etc/hosts</code> will give the contents of the <code>cat/etc/resolv.conf</code>. To look up hosts <code>host linuxfoundation.org</code> will display the IP address for linuxfoundation. *<strong>Network interfaces</strong> These are connection channels between a device and a network. Physically, the proceed through a network interface card(NIC). <code>ifconfig</code> command will report interfaces. Network configuration files will ensure that the interfaces function correctly. These will be in <code>/etc/network/interfaces/</code>. <code>/etc/init.d/networkingstart</code> will start networking configuration. To view the IP address, <code>/sbin/ip addr show</code>. To view routing informatio, <code>/sbin/ip route show</code></p>
+<p><code>ping &lt;hostname&gt;</code> will check whether a host can receive and broadcast data.</p>
+<div id="routing" class="section level3">
+<h3>Routing</h3>
+<p>A network has nodes and the <strong>routing tables</strong> show the IP address of each node as well as the <em>IP routing protocols</em>. Use <code>route -n</code> to see table.</p>
+<p>Networking tools</p>
+<ul>
+<li><code>ethtool</code> queries network interfaces and set parameters.</li>
+<li><code>netstat</code> shows the active connections and data</li>
+<li><code>nmap</code> scans open ports</li>
+<li><code>tcpdump</code> dumps network traffic for analysis</li>
+<li><code>iptraf</code> monitors network traffic.</li>
+</ul>
+</div>
+</div>
 
 
 </div>

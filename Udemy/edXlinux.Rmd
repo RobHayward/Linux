@@ -191,6 +191,42 @@ So 6 for read and write
 
 `chmod 755 test1` would read and execute acess to all and read, write and execute access to owner. 
 
+## Networking
+
+Devices in a network need a unique network address identifier.  This is known as IP (Internet protocol address). Bit-size packets with data buffers and headers are exchanged. There are two types of IP address
+
+* IPv4: uses 32 bits.  Divided into 4 8-bit sections called *octets*. 
+* IPv6: uses 128 bits. 
+
+There are five classes of network address:  A, B and C have two components: Network address (Net ID) and Host address (Host ID).  D is for special multicast and E is reserved for future use. 
+
+* Class A uses the first octet as the Net ID and the rest as Host ID. The first bit of the first Octet is set to zero and 000000 and 111111 are reserved, so there are only 126 Class A networks available.  Each class A network can have upto 16.7 million hosts.  The range of host addresses is from 1.0.0.0 to 127.255.255.255 (note the value of an octet or 8-bits can range from 0 to 255)
+
+* Class B address use the first two octets as theri Net ID and the last two as the Host ID. The first two digits of the rist octet are always 1,0 so there is maximum of 16,384 (4 bits) Class B networks.  The rist octet runs from 128 to 191 so the range of host addresses is 128.0.0.0 to 191.255.255.255.
+
+* Class C addresses use the first three octets. The first two digits are 110.  The first octet has values from 192 to 223.  They range from 192.0.0.0 to 223.255.255.255
+
+IP addresses can be asigned manually or dunamically. The Dynamic Host Configuration Protocol (DHCP) is used to assignm IP addresses. **ipcal** can be used to calcualte manufal IP addresse.  
+
+**Name Resolution** is used to convert numerical IP address values to human-readable format known as **hostname**. For example, 140.211.169.4 is the numerical IP address for **linuxfondation.org**.  The **localhost** is associated with the IP address 127.0.0.1 and descibes the machine that you are on. 
+
+`cat /etc/hosts` will give the contents of the `cat/etc/resolv.conf`.  To look up hosts `host linuxfoundation.org` will display the IP address for linuxfoundation. 
+***Network interfaces**
+These are connection channels between a device and a network. Physically, the proceed through a network interface card(NIC). `ifconfig` command will report interfaces.  Network configuration files will ensure that the interfaces function correctly.  These will be in `/etc/network/interfaces/`.   `/etc/init.d/networkingstart` will start networking configuration. To view the IP address, `/sbin/ip addr show`.   To view routing informatio, `/sbin/ip route show`
+
+`ping <hostname>` will check whether a host can receive and broadcast data.
+
+###Routing
+A network has nodes and the **routing tables** show the IP address of each node as well as the *IP routing protocols*. Use `route -n` to see table. 
+
+Networking tools
+
+* `ethtool` queries network interfaces and set parameters. 
+* `netstat` shows the active connections and data
+* `nmap` scans open ports
+* `tcpdump` dumps network traffic for analysis
+* `iptraf` monitors network traffic. 
+
 
 
 
