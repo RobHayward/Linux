@@ -272,13 +272,56 @@ img {
 <div id="routing" class="section level3">
 <h3>Routing</h3>
 <p>A network has nodes and the <strong>routing tables</strong> show the IP address of each node as well as the <em>IP routing protocols</em>. Use <code>route -n</code> to see table.</p>
-<p>Networking tools</p>
+</div>
+</div>
+<div id="networking-tools" class="section level2">
+<h2>Networking tools</h2>
 <ul>
 <li><code>ethtool</code> queries network interfaces and set parameters.</li>
 <li><code>netstat</code> shows the active connections and data</li>
 <li><code>nmap</code> scans open ports</li>
 <li><code>tcpdump</code> dumps network traffic for analysis</li>
 <li><code>iptraf</code> monitors network traffic.</li>
+</ul>
+</div>
+<div id="browsers" class="section level2">
+<h2>Browsers</h2>
+<p>Download without using a browswer. Use <code>wget</code></p>
+<ul>
+<li>Large files</li>
+<li>Recursive downloads (one refers to another)</li>
+<li>Password required</li>
+<li>Multiple file download</li>
+</ul>
+<p>Use <code>wget &lt;url&gt;</code> will read page as a local file.</p>
+<p>Use <code>curl</code> to get URL information. It can also allow saving of page contents. Use <code>curl -c saved.html http://www.mysite.com</code> will save the contents of mysite to saved.html.</p>
+</div>
+<div id="transfering-files" class="section level2">
+<h2>Transfering files</h2>
+<p>File transfer protocol: ftp. Client-server model uses a server and a number of clients.</p>
+<p>Command line ftp clients</p>
+<ul>
+<li>ftp</li>
+<li>sftp: uses secure shell (ssh). Encripts data but does not work with analymous clients like ftp.</li>
+<li>ncftp</li>
+<li>yafc</li>
+</ul>
+<p><code>ftp -p aristotle.learningmate.com</code> will make connection, ask for username and password and make the link. To look at files and transwer use <code>ls</code> and <code>get</code>.</p>
+<p><strong>secure shell (SSH)</strong> is used for secure data communication. To run <code>my_command</code> on remote system via SSH, use <code>ssh &lt;remote system? my_command</code>. You may be asked for a password but this may also be overriden.</p>
+<p>Files can be moved using <strong>secured copy (scp)</strong>. To copy a local file to a remote system, <code>scp &lt;local file&gt; &lt;user@remotesystem&gt;:/home/user</code></p>
+<div id="manipulating-text" class="section level3">
+<h3>Manipulating text</h3>
+<ul>
+<li><code>cat filename</code></li>
+<li><code>cat file1 file2</code> brings together two files</li>
+<li><code>cat file1 file2 &gt; newfile&gt;</code> put together in new file</li>
+<li><code>cat file1 file2 &gt;&gt; newfile&gt;</code> append</li>
+<li><code>cat &gt; file</code> any subsequent lines go into the file (until CNTR=D is pressed)</li>
+<li><code>cat &gt;&gt; file</code> appended until control-D</li>
+<li><code>tac</code> will print lines backwards</li>
+<li><code>echo</code> will print to screen or file</li>
+<li><code>echo &gt;&gt; file1</code> will append to file 1.</li>
+<li><code>echo</code> with switch <code>-e</code> will allow <code>\n</code> newlines and <code>\t</code> tabs</li>
 </ul>
 </div>
 </div>

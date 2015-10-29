@@ -219,7 +219,7 @@ These are connection channels between a device and a network. Physically, the pr
 ###Routing
 A network has nodes and the **routing tables** show the IP address of each node as well as the *IP routing protocols*. Use `route -n` to see table. 
 
-Networking tools
+## Networking tools
 
 * `ethtool` queries network interfaces and set parameters. 
 * `netstat` shows the active connections and data
@@ -227,10 +227,48 @@ Networking tools
 * `tcpdump` dumps network traffic for analysis
 * `iptraf` monitors network traffic. 
 
+## Browsers
+Download without using a browswer.  Use `wget`
 
+* Large files
+* Recursive downloads (one refers to another)
+* Password required 
+* Multiple file download
 
+Use `wget <url>` will read page as a local file.
 
+Use `curl` to get URL information. It can also allow saving of page contents. Use `curl -c saved.html http://www.mysite.com` will save the contents of mysite to saved.html. 
 
+## Transfering files
+File transfer protocol: ftp. Client-server model uses a server and a number of clients. 
+
+Command line ftp clients
+
+* ftp
+* sftp: uses secure shell (ssh).  Encripts data but does not work with analymous clients like ftp.
+* ncftp
+* yafc
+
+`ftp -p aristotle.learningmate.com` will make connection, ask for username and password and make the link.  To look at files and transwer use `ls` and `get`. 
+
+**secure shell (SSH)** is used for secure data communication. To run `my_command` on remote system via SSH, use `ssh <remote system? my_command`.  You may be asked for a password but this may also be overriden. 
+
+Files can be moved using **secured copy (scp)**.  To copy a local file to a remote system, `scp <local file> <user@remotesystem>:/home/user`
+
+###Manipulating text
+
+* `cat filename` 
+* `cat file1 file2` brings together two files
+* `cat file1 file2 > newfile>` put together in new file
+* `cat file1 file2 >> newfile>` append
+* `cat > file` any subsequent lines go into the file (until CNTR=D is pressed)
+* `cat >> file` appended until control-D
+* `tac` will print lines backwards
+* `echo` will print to screen or file
+* `echo >> file1` will append to file 1. 
+* `echo` with switch `-e` will allow `\n` newlines and `\t` tabs
+
+  
 
 
 
