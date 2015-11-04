@@ -63,6 +63,60 @@ img {
 <h1 class="title">edX Linux</h1>
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#introduction">Introduction</a><ul>
+<li><a href="#man-pages">Man pages</a></li>
+<li><a href="#gnu-information-system">GNU information system</a></li>
+<li><a href="#help-command">Help command</a></li>
+<li><a href="#other">Other</a></li>
+</ul></li>
+<li><a href="#command-line">Command line</a><ul>
+<li><a href="#basic-operations">Basic operations</a></li>
+<li><a href="#utilities">Utilities</a></li>
+<li><a href="#explore">Explore</a></li>
+<li><a href="#standard-file-streams">Standard file streams</a></li>
+<li><a href="#io-direction">I/O direction</a></li>
+<li><a href="#matching-files">Matching files</a></li>
+<li><a href="#working-with-files">Working with files</a></li>
+</ul></li>
+<li><a href="#package-management">Package management</a><ul>
+<li><a href="#operations">Operations</a></li>
+<li><a href="#user-environment">User environment</a></li>
+<li><a href="#environmental-variables">Environmental variables</a></li>
+<li><a href="#command-history">Command history</a></li>
+</ul></li>
+<li><a href="#networking">Networking</a><ul>
+<li><a href="#routing">Routing</a></li>
+</ul></li>
+<li><a href="#networking-tools">Networking tools</a></li>
+<li><a href="#browsers">Browsers</a></li>
+<li><a href="#transfering-files">Transfering files</a><ul>
+<li><a href="#manipulating-text">Manipulating text</a></li>
+</ul></li>
+<li><a href="#file-management">File management</a><ul>
+<li><a href="#regular-expressions">Regular expressions</a></li>
+<li><a href="#grep"><code>grep</code></a></li>
+<li><a href="#tr"><code>tr</code></a></li>
+<li><a href="#large-files">Large files</a></li>
+<li><a href="#zip-files">Zip files</a></li>
+</ul></li>
+<li><a href="#printing">Printing</a></li>
+<li><a href="#introduction-to-scripts">Introduction to scripts</a><ul>
+<li><a href="#special-characters">Special characters</a><ul>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#commands-can-be-divided-into-the-following-categories">Commands can be divided into the following categories</a></li>
+<li><a href="#command-substitution">Command substitution</a></li>
+<li><a href="#environemnt-variables">Environemnt variables</a></li>
+<li><a href="#exporting-variables">Exporting variables</a></li>
+<li><a href="#script-parameters">Script parameters</a></li>
+<li><a href="#output-redirection">Output redirection</a></li>
+<li><a href="#input-redirection">Input redirection</a></li>
+</ul></li>
+<li><a href="#constructs">Constructs</a></li>
+</ul></li>
+</ul>
+</div>
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
@@ -322,6 +376,231 @@ img {
 <li><code>echo</code> will print to screen or file</li>
 <li><code>echo &gt;&gt; file1</code> will append to file 1.</li>
 <li><code>echo</code> with switch <code>-e</code> will allow <code>\n</code> newlines and <code>\t</code> tabs</li>
+</ul>
+<p>Use <code>sed</code> as one text editor.</p>
+<ul>
+<li><code>sed -e command &lt; filename</code></li>
+<li><code>sed -f scriptfile &lt; filename</code></li>
+<li><code>sed s/pattern/replace_string/ file</code> replaces first instance of patter with replace_string</li>
+<li><code>sed s/pattern/replace_string/ file/g</code> same but all instances</li>
+<li><code>1,3s/pattern/replace_string/ file/g</code> same but only lines 1 to 3</li>
+<li><code>-i s/pattern/replace_string/ file/g</code> same but same but save changes</li>
+<li><code>-i s/pattern/replace_string/ file/g file1 &gt; file2</code> same but safer because changes can be inspected before deletion of old file</li>
+</ul>
+<p>Use <code>awk</code> to extract specific contents of a file. * <code>awk 'command' var=value file</code> specify a commmand at the command line * <code>awk -f scriptfile var=value file</code> specify a script file * <code>awk '{ print $0 }' /etc/passwd</code> print entire file * <code>awk -F: '{ print $1 }' /etc/passwd</code> Print first field (column) of every line * <code>awk -F: '{ print $1 $6}' /etc/passwd</code> Print first and sixth field of every line</p>
+</div>
+</div>
+<div id="file-management" class="section level2">
+<h2>File management</h2>
+<p>File manipulation programmes * <code>sort</code> Arrange lines of text according to the sort key. <code>-u</code> will sort only unique. * <code>uniq</code> Remove duplicate lines. Must be consequtive (therefore run sort first). <code>uniq -c</code> will count the duplicate lines * <code>paste</code> joins two files together. <code>-d</code> specifies the delimiters; delimiters can be “space”, “tab”, “|” etc;<code>-s</code> append rather than horizontal join. * <code>join</code> joins two files based on a common field. * <code>split</code> will split a file into equal size segments. This will leave the original file and will break into 1000 line segments.</p>
+<div id="regular-expressions" class="section level3">
+<h3>Regular expressions</h3>
+<ul>
+<li>(dot) Match any single character</li>
+<li>a|z Match a or z</li>
+<li>$ Match end of string</li>
+<li><ul>
+<li>Match preceeding item 0 or more times</li>
+</ul></li>
+</ul>
+<p>Example: “The quick brown fox jumpted over the lazy dog”</p>
+<ul>
+<li>a.. matches “azy”</li>
+<li>b.|j. matches both “br” and “ju”</li>
+<li>..$ matches “og”</li>
+<li>l.*y matches “lazy”&quot;</li>
+<li>the.* matches the whole sentence.</li>
+</ul>
+</div>
+<div id="grep" class="section level3">
+<h3><code>grep</code></h3>
+<p>Text searching tool</p>
+<ul>
+<li><code>grep [pattern] &lt;filename&gt;</code> prints all lines with matching pattern</li>
+<li><code>grep -v [pattern] &lt;filename&gt;</code> prints all lines without the pattern</li>
+<li><code>grep [0-9] &lt;filename&gt;</code> prints all lines with numbers 0 to 9</li>
+<li><code>grep -C 3 [pattern] &lt;filename&gt;</code> prints context of lines matching pattern. Here three lines above and below.</li>
+</ul>
+</div>
+<div id="tr" class="section level3">
+<h3><code>tr</code></h3>
+<p>Used for translating one character for another</p>
+<p><code>tr [options] set1 set2</code> One or two options are required. Will substitute set2 for set1.</p>
+<ul>
+<li><code>cat city | tr a-z A-Z</code> will translate all the lower case letters in city to upper case</li>
+<li><code>tr '{}' '[]' &lt;inputfile&gt; &lt;outputfile&gt;</code> changes braces to parenthesis</li>
+<li><code>tee</code> takes output from a command and sends it to a file</li>
+<li><code>wc</code> counts <code>-l</code> lines, <code>-w</code> words or <code>-c</code> bytes</li>
+<li><code>cut</code> can extract a specific column. It assumes that columns are separated by a tab</li>
+</ul>
+</div>
+<div id="large-files" class="section level3">
+<h3>Large files</h3>
+<p>These can be loaded using <code>less</code> this does not put it into memory.</p>
+<ul>
+<li><code>less &lt;filename&gt;</code></li>
+<li><code>cat &lt;filename&gt; less</code></li>
+<li><code>head</code> shows the first few lines</li>
+<li><code>tail -n 14</code> last 14 lines.</li>
+</ul>
+</div>
+<div id="zip-files" class="section level3">
+<h3>Zip files</h3>
+<ul>
+<li><code>zcat compressed-file.txt.gz</code> To view compressed file</li>
+<li><code>zless &lt;filename&gt;</code> or <code>zmore &lt;filename&gt;</code> to page through zip</li>
+<li><code>zgrep</code> search inside zip</li>
+<li><code>zdiff</code> find differences in file.</li>
+</ul>
+</div>
+</div>
+<div id="printing" class="section level1">
+<h1>Printing</h1>
+<p>Linux standard for printing is <strong>Common UNIX printing system</strong> (CUPS).</p>
+<ul>
+<li>Scheduler: Manages the print jobs.<br /></li>
+<li>COnfiguration: scheduler reads configuration files. The most important are <strong>cupsd.conf</strong> (mostly for security and access rights) and <strong>printers.conf</strong>. These are stored in <code>/etc/cups/</code>.<br /></li>
+<li><code>ip</code> or <code>ipr</code> commands can be used to print from the command line</li>
+<li><code>ip &lt;filename&gt;</code> prints file.</li>
+<li><code>ip -d printer &lt;filemame&gt;</code> prints to a specific printer</li>
+<li><code>programme | lp echo string | lp</code> prints the output of a programme</li>
+<li><code>lpq -a</code> show the que status</li>
+<li><code>lpaadmin</code> configure que status</li>
+</ul>
+</div>
+<div id="introduction-to-scripts" class="section level1">
+<h1>Introduction to scripts</h1>
+<p>Use shell scripts. Most common is <em>bash</em>. Shell is a <strong>commanline interpreter</strong>.</p>
+<p><code>#!/bin/bash</code> <code>find. -name &quot;*.c&quot; -ls</code></p>
+<p>The command interpreter will execute statements that are found in the script. Interpreters</p>
+<ul>
+<li><code>/usr/bin/perl</code></li>
+<li><code>/bin/bash</code></li>
+<li><code>/bin/csh</code></li>
+<li><code>/usr/bin/python</code></li>
+<li><code>/bin/sh</code></li>
+</ul>
+<p>Choices are listed in <code>/etc/shells</code>. The default is bash. This can be overridden.</p>
+<p><code>bash &lt;script&gt;</code> will send the script file to the shell interpreter.</p>
+<div id="special-characters" class="section level2">
+<h2>Special characters</h2>
+<ul>
+<li><h1>used for comments</h1></li>
+<li> used to continue on to next line</li>
+<li>; to have a second commmand on same line</li>
+<li>$ indicates that what follows is a variable</li>
+<li>joining commands wit &amp;&amp; will stop subsequent actions when one fails</li>
+<li>joining commands with || will continue until one command succeeds</li>
+</ul>
+<div id="functions" class="section level3">
+<h3>Functions</h3>
+<ul>
+<li>Declare a function</li>
+<li>Call a function</li>
+</ul>
+<p>syntax</p>
+<pre><code>function_name () {
+  command ...
+}</code></pre>
+<p>arguments that are passed to the function are usually named $1 and $2 etc.</p>
+<pre><code>#!bin/bash
+display() {
+  echo &quot;This is a message from the function&quot;
+  echo &quot;The parameter passed from the calling process is&quot; $1
+}
+display &quot;Bob&quot;</code></pre>
+</div>
+<div id="commands-can-be-divided-into-the-following-categories" class="section level3">
+<h3>Commands can be divided into the following categories</h3>
+<ul>
+<li>Compiled applications: binary executable files that are on the filesystem. The shell script always has access to things like <code>rm</code>, <code>ls</code>, <code>df</code>, <code>vi</code>, <code>gzip</code>.</li>
+<li>Built in <strong>bash</strong> commands: built-in bash commands that can be used in the shell. These include <code>cd</code>, <code>pwd</code>, <code>read</code>, <code>logout</code>, <code>printf</code>, <code>let</code>. A complete list is found on <code>bash man</code>.</li>
+<li>Other scripts</li>
+</ul>
+</div>
+<div id="command-substitution" class="section level3">
+<h3>Command substitution</h3>
+<p>Sometimes it is necessary to substitute the result of a command to the inoput of another commmand. THered are two methods</p>
+<ul>
+<li>Enclosing the inner command with backticks (`)</li>
+<li>Enclosing the inner command in $</li>
+</ul>
+<p>Example <code>cd /lib/modules/$(uname -r)/</code> The output of the command <code>umame -r</code> becomes the argument for cd.</p>
+</div>
+<div id="environemnt-variables" class="section level3">
+<h3>Environemnt variables</h3>
+<p>Environment variables supply inputs, validation and control behaviour. A list of environment variables is found with <code>env</code>, <code>set</code> and <code>printenv</code> commands.</p>
+<p><code>$HOME</code> shows the HOME environment variable, <code>MYCOLOR=blue</code> sets the MYCOLOR environment variable as blue.</p>
+</div>
+<div id="exporting-variables" class="section level3">
+<h3>Exporting variables</h3>
+<p>Variables that are created are only available to that script. To make them more widely available, they must be promosted to <strong>environment variables</strong> using the <code>export</code> command.</p>
+<p>Example <code>export VAR=value</code> or <code>VAR=value; export VAR</code></p>
+</div>
+<div id="script-parameters" class="section level3">
+<h3>Script parameters</h3>
+<p>It is often necessary to pass parameter values to a script. Within a script, the parameter or an argument is represented by $ and a number.</p>
+<ul>
+<li>$0 is the script name</li>
+<li>$1 the first parameter</li>
+<li>$2, $3 second and third parameters</li>
+<li>$* all the parameters</li>
+<li>$# number of arguments</li>
+</ul>
+<p>For example,</p>
+<pre><code>#!/bin/bash
+echo &quot;The name of the script is:&quot; $0
+echo &quot;The name of the first argument is&quot; $1
+echo &quot;The name of the second argument is:&quot; $2</code></pre>
+</div>
+<div id="output-redirection" class="section level3">
+<h3>Output redirection</h3>
+<p>The character <code>&gt;</code> is used to write the output of a file to another file. <code>free &gt; /tmp/free.out</code> will send the output of fee to the free-out file. <code>&gt;&gt;</code> will append the file.</p>
+</div>
+<div id="input-redirection" class="section level3">
+<h3>Input redirection</h3>
+<p>Just as output can be rediected, input can be taken from another file. The <code>&lt;</code> is used for input.</p>
+<pre><code>#!/bin/bash
+echo &quot;Line Count&quot;
+wc -l &lt; /temp/free.cut</code></pre>
+<p>will count the lines in free.cut</p>
+</div>
+</div>
+<div id="constructs" class="section level2">
+<h2>Constructs</h2>
+<p>The if statement will be based on numeric or string comparisons, truth or faliure and file existence.</p>
+<pre><code>if condition
+then
+  statement
+else
+  statement
+fi</code></pre>
+<p>for example,</p>
+<pre><code>if [-f /etc/passwd]
+then
+  echo &quot;/etcpassed exists&quot;
+fi</code></pre>
+<p>List of things that could be checke</p>
+<ul>
+<li><code>-a file</code> does file exist</li>
+<li><code>-d file</code> is file a directory</li>
+<li><code>-f file</code> is it a regular file (not symbolic link)</li>
+<li><code>s file</code> is it of non-zero size</li>
+<li><code>g file</code> hs sgid set?</li>
+<li><code>-u file</code> has suid set?</li>
+<li><code>-r file</code> is file readable</li>
+<li><code>-w file</code> is file writable</li>
+<li><code>x file</code> is it executable</li>
+</ul>
+<p><code>man l test</code> will give the full list</p>
+<p>Numerical tests</p>
+<ul>
+<li><code>-eq</code> equal to</li>
+<li><code>-ne</code> not equal to</li>
+<li><code>-gt</code> greater than</li>
+<li><code>-lt</code> less than</li>
+<li><code>-ge</code> greater or equal than</li>
+<li><code>-le</code> less of equal to</li>
 </ul>
 </div>
 </div>

@@ -3,6 +3,7 @@ title: "edX Linux"
 output: 
   html_document: 
     theme: journal
+    toc: yes
 ---
 
 ## Introduction
@@ -267,6 +268,244 @@ Files can be moved using **secured copy (scp)**.  To copy a local file to a remo
 * `echo` will print to screen or file
 * `echo >> file1` will append to file 1. 
 * `echo` with switch `-e` will allow `\n` newlines and `\t` tabs
+
+Use `sed` as one text editor. 
+
+* `sed -e command < filename`
+* `sed -f scriptfile < filename`
+* `sed s/pattern/replace_string/ file` replaces first instance of patter with replace_string
+* `sed s/pattern/replace_string/ file/g` same but all instances
+* `1,3s/pattern/replace_string/ file/g` same but only lines 1 to 3
+* `-i s/pattern/replace_string/ file/g` same but same but save changes
+* `-i s/pattern/replace_string/ file/g file1 > file2` same but safer because changes can be inspected before deletion of old file
+
+Use `awk` to extract specific contents of a file. 
+* `awk 'command' var=value file` specify a commmand at the command line
+* `awk -f scriptfile var=value file` specify a script file
+* `awk '{ print $0 }' /etc/passwd` print entire file
+* `awk -F: '{ print $1 }' /etc/passwd` Print first field (column) of every line
+* `awk -F: '{ print $1 $6}' /etc/passwd` Print first and sixth field of every line
+
+
+##File management
+File manipulation programmes
+* `sort` Arrange lines of text according to the sort key. `-u` will sort only unique.
+* `uniq` Remove duplicate lines.  Must be consequtive (therefore run sort first).  `uniq -c` will count the duplicate lines 
+* `paste` joins two files together. `-d` specifies the delimiters; delimiters can be "space", "tab", "|" etc;`-s` append rather than horizontal join.
+* `join` joins two files based on a common field. 
+* `split` will split a file into equal size segments. This will leave the original file and will break into 1000 line segments. 
+
+###Regular expressions
+* (dot) Match any single character
+* a|z Match a or z
+* $ Match end of string
+* * Match preceeding item 0 or more times
+
+Example: "The quick brown fox jumpted over the lazy dog"
+
+* a.. matches "azy"
+* b.|j. matches both "br" and "ju"
+* ..$ matches "og"
+* l.*y matches "lazy""
+* the.* matches the whole sentence. 
+
+###`grep`
+Text searching tool
+
+* `grep [pattern] <filename>` prints all lines with matching pattern
+* `grep -v [pattern] <filename>` prints all lines without the pattern
+* `grep [0-9] <filename>` prints all lines with numbers 0 to 9
+* `grep -C 3 [pattern] <filename>` prints context of lines matching pattern.  Here three lines above and below.
+
+###`tr`
+Used for translating one character for another
+
+`tr [options] set1 set2`
+One or two options are required.  Will substitute set2 for set1. 
+
+* `cat city | tr a-z A-Z` will translate all the lower case letters in city to upper case
+* `tr '{}' '[]' <inputfile> <outputfile>` changes braces to parenthesis
+* `tee` takes output from a command and sends it to a file
+* `wc` counts `-l` lines, `-w` words or `-c` bytes
+* `cut` can extract a specific column. It assumes that columns are separated by a tab
+
+###Large files
+These can be loaded using `less` this does not put it into memory.
+
+* `less <filename>`
+* `cat <filename> less`
+* `head` shows the first few lines
+* `tail -n 14` last 14 lines.
+
+### Zip files
+* `zcat compressed-file.txt.gz` To view compressed file
+* `zless <filename>` or `zmore <filename>` to page through zip
+* `zgrep` search inside zip
+* `zdiff` find differences in file.
+
+# Printing
+Linux standard for printing is **Common UNIX printing system** (CUPS). 
+
+* Scheduler: Manages the print jobs.  
+* COnfiguration:  scheduler reads configuration files. The most important are **cupsd.conf** (mostly for security and access rights) and **printers.conf**. These are stored in `/etc/cups/`.  
+* `ip` or `ipr` commands can be used to print from the command line
+* `ip <filename>` prints file.
+* `ip -d printer <filemame>` prints to a specific printer
+* `programme | lp echo string | lp` prints the output of a programme
+* `lpq -a` show the que status
+* `lpaadmin` configure que status
+
+# Introduction to scripts
+Use shell scripts.  Most common is *bash*.  Shell is a **commanline interpreter**.  
+
+`#!/bin/bash`
+`find. -name "*.c" -ls`
+
+The command interpreter will execute statements that are found in the script. Interpreters
+
+* `/usr/bin/perl`
+* `/bin/bash`
+* `/bin/csh`
+* `/usr/bin/python`
+* `/bin/sh`
+
+Choices are listed in `/etc/shells`.  The default is bash. This can be overridden. 
+
+`bash <script>` will send the script file to the shell interpreter. 
+
+## Special characters
+* # used for comments
+* \ used to continue on to next line
+* ; to have a second commmand on same line
+* $ indicates that what follows is a variable
+* joining commands wit && will stop subsequent actions when one fails
+* joining commands with || will continue until one command succeeds
+
+###Functions
+
+* Declare a function 
+* Call a function
+
+syntax
+```
+function_name () {
+  command ...
+}
+```
+arguments that are passed to the function are usually named $1 and $2 etc. 
+
+```
+#!bin/bash
+display() {
+  echo "This is a message from the function"
+  echo "The parameter passed from the calling process is" $1
+}
+display "Bob"
+```
+
+###Commands can be divided into the following categories
+* Compiled applications: binary executable files that are on the filesystem. The shell script always has access to things like `rm`, `ls`, `df`, `vi`, `gzip`. 
+* Built in **bash** commands: built-in bash commands that can be used in the shell. These include `cd`, `pwd`, `read`, `logout`, `printf`, `let`. A complete list is found on `bash man`. 
+* Other scripts
+
+###Command substitution
+Sometimes it is necessary to substitute the result of a command to the inoput of another commmand. THered are two methods
+
+* Enclosing the inner command with backticks (`)
+* Enclosing the inner command in $
+
+Example 
+`cd /lib/modules/$(uname -r)/`
+The output of the command `umame -r` becomes the argument for cd. 
+
+###Environemnt variables
+Environment variables supply inputs, validation and control behaviour. A list of environment variables is found with `env`, `set` and `printenv` commands. 
+
+`$HOME` shows the HOME environment variable, 
+`MYCOLOR=blue` sets the MYCOLOR environment variable as blue. 
+
+###Exporting variables
+Variables that are created are only available to that script.  To make them more widely available, they must be promosted to **environment variables** using the `export` command. 
+
+Example
+`export VAR=value` or `VAR=value; export VAR`
+
+###Script parameters
+It is often necessary to pass parameter values to a script. Within a script, the parameter or an argument is represented by $ and a number. 
+
+* $0 is the script name
+* $1 the first parameter
+* $2, $3 second and third parameters
+* $* all the parameters
+* $# number of arguments
+
+For example, 
+```
+#!/bin/bash
+echo "The name of the script is:" $0
+echo "The name of the first argument is" $1
+echo "The name of the second argument is:" $2
+```
+
+###Output redirection
+The character `>` is used to write the output of a file to another file.  `free > /tmp/free.out` will send the output of fee to the free-out file. `>>` will append the file. 
+
+###Input redirection
+Just as output can be rediected, input can be taken from another file. The `<` is used for input. 
+
+```
+#!/bin/bash
+echo "Line Count"
+wc -l < /temp/free.cut
+```
+will count the lines in free.cut
+
+## Constructs
+The if statement will be based on numeric or string comparisons, truth or faliure and file existence. 
+
+```
+if condition
+then
+  statement
+else
+  statement
+fi
+```
+for example, 
+```
+if [-f /etc/passwd]
+then
+  echo "/etcpassed exists"
+fi
+```
+List of things that could be checke
+
+* `-a file` does file exist
+* `-d file` is file a directory
+* `-f file` is it a regular file (not symbolic link)
+* `s file` is it of non-zero size
+* `g file` hs sgid set?
+* `-u file` has suid set?
+* `-r file` is file readable
+* `-w file` is file writable
+* `x file` is it executable
+
+`man l test` will give the full list
+
+Numerical tests
+
+* `-eq` equal to
+* `-ne` not equal to
+* `-gt` greater than 
+* `-lt` less than 
+* `-ge` greater or equal than
+* `-le` less of equal to
+
+
+
+
+
+
 
   
 
