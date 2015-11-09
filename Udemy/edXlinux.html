@@ -115,6 +115,24 @@ img {
 </ul></li>
 <li><a href="#constructs">Constructs</a></li>
 </ul></li>
+<li><a href="#advanced-bash-scripting">Advanced bash scripting</a><ul>
+<li><a href="#string-manipulation">String manipulation</a></li>
+<li><a href="#boolean-expressions">Boolean expressions</a></li>
+<li><a href="#the-case-statement">The case statement</a><ul>
+<li><a href="#loops">Loops</a></li>
+<li><a href="#script-debugging">Script debugging</a></li>
+<li><a href="#redirecting-errors-to-file-and-screen">Redirecting errors to file and screen</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#processes">Processes</a><ul>
+<li><a href="#top">top</a></li>
+<li><a href="#load-average">Load average</a></li>
+<li><a href="#future-scheduling">Future scheduling</a></li>
+<li><a href="#cron">Cron</a><ul>
+<li><a href="#common-applications">Common Applications</a></li>
+</ul></li>
+<li><a href="#internet">Internet</a></li>
+</ul></li>
 </ul>
 </div>
 
@@ -125,7 +143,7 @@ img {
 <p>The main sources of information 1. Man pages 2. Command help 3. GNU info 4. Other 5. <a href="https://www.gentoo.org/doc/en/"><a href="https://www.gentoo.org/doc/en/" class="uri">https://www.gentoo.org/doc/en/</a></a></p>
 <div id="man-pages" class="section level3">
 <h3>Man pages</h3>
-<p>Various options 1. <code>-f</code> will dispaly all files that contain the word in the argument 2. <code>-k</code> will display all discussion even if the word is not used</p>
+<p>Various options 1. <code>-f</code> will display all files that contain the word in the argument 2. <code>-k</code> will display all discussion even if the word is not used</p>
 <p>Man pages are divided into 9 chapters. The chapter number can be forced by the number. The <code>a</code> parameter will display all manual pages with the given name. * <code>man 3 printf</code> * <code>man -a printf</code></p>
 </div>
 <div id="gnu-information-system" class="section level3">
@@ -139,7 +157,7 @@ img {
 </div>
 <div id="other" class="section level3">
 <h3>Other</h3>
-<p><code>gnome help</code> will provide specific help about the particular linux family.</p>
+<p><code>gnome help</code> will provide specific help about the particular Linux family.</p>
 </div>
 </div>
 <div id="command-line" class="section level2">
@@ -159,7 +177,7 @@ img {
 <li>login</li>
 <li>mkdir</li>
 </ul>
-<p>Best to shutdown with <code>shutdown</code>, the <code>init</code> process will control the shutting down. <code>shutdown -r</code> will reboot. Usually, executable programmes are in <code>/bin/usr/bin/</code> to find where programmes are use <code>which &lt;prog&gt;</code> or <code>whereis &lt;prog&gt;</code>.</p>
+<p>Best to shut-down with <code>shutdown</code>, the <code>init</code> process will control the shutting down. <code>shutdown -r</code> will reboot. Usually, executable programmes are in <code>/bin/usr/bin/</code> to find where programmes are use <code>which &lt;prog&gt;</code> or <code>whereis &lt;prog&gt;</code>.</p>
 </div>
 <div id="utilities" class="section level3">
 <h3>Utilities</h3>
@@ -175,10 +193,10 @@ img {
 <li><code>cd/</code> Change to root directory</li>
 <li><code>ls</code> list files and directories</li>
 <li><code>ls -a</code> list all files (including hidden)</li>
-<li><code>tree</code> view of filesystem</li>
+<li><code>tree</code> view of file system</li>
 <li><code>ln</code> can create soft or hard links</li>
 </ul>
-<p>Move directories to the stack with <code>pushd .</code> to move to that first entry in the stack type <code>pop</code>. However, it is best to use <code>pushd +1</code> for the first element and <code>pushd + 2</code> for the second element. This will preseve the stack, while <code>pop</code> will clear. Look <a href="http://www.eriwen.com/bash/pushd-and-popd/">here</a></p>
+<p>Move directories to the stack with <code>pushd .</code> to move to that first entry in the stack type <code>pop</code>. However, it is best to use <code>pushd +1</code> for the first element and <code>pushd + 2</code> for the second element. This will preserve the stack, while <code>pop</code> will clear. Look <a href="http://www.eriwen.com/bash/pushd-and-popd/">here</a></p>
 </div>
 <div id="standard-file-streams" class="section level3">
 <h3>Standard file streams</h3>
@@ -198,8 +216,8 @@ img {
 <li><code>locate</code> will search for files</li>
 <li><code>grep</code> can be used to filer files</li>
 <li><code>locate</code> uses the <code>updatedb</code> programme. This can be run once a day but can be initiated at any time</li>
-<li><code>find</code> will find from current directory. <code>-name</code> will find only particular name, <code>-type</code> will find only particular type. ** <code>find -name &quot;.swp&quot; -exec rm {} ':'</code> will remove all the fils with swp extension by sending them to {} to have rm executed on them.</li>
-<li><code>-exec</code> is s modifiction that will allow you to execute commands on the result of the <code>find</code></li>
+<li><code>find</code> will find from current directory. <code>-name</code> will find only particular name, <code>-type</code> will find only particular type. ** <code>find -name &quot;.swp&quot; -exec rm {} ':'</code> will remove all the files with swp extension by sending them to {} to have rm executed on them.</li>
+<li><code>-exec</code> is s modification that will allow you to execute commands on the result of the <code>find</code></li>
 </ul>
 </div>
 <div id="matching-files" class="section level3">
@@ -219,17 +237,17 @@ img {
 <ul>
 <li><code>cat</code> view short files and link together</li>
 <li><code>tac</code> look file backwards</li>
-<li><code>less</code> view larget file with paging programme (use / to serarch)</li>
+<li><code>less</code> view larger file with paging programme (use / to search)</li>
 <li><code>tail</code> print last 10 lines.</li>
 <li><code>head</code></li>
-<li><code>touch</code> will modify the file’s timestamp to the current time. Can also be used to create a new file.</li>
-<li><code>rm</code> will remove a file <code>-i</code> interactivey will ask for confirmation for each file.</li>
+<li><code>touch</code> will modify the file’s timestamps to the current time. Can also be used to create a new file.</li>
+<li><code>rm</code> will remove a file <code>-i</code> interactive will ask for confirmation for each file.</li>
 </ul>
 </div>
 </div>
 <div id="package-management" class="section level2">
 <h2>Package management</h2>
-<p>The debian family has two levels of package management: the low level <code>dpkg</code> and the high level <code>apt-get</code>. The high level tool will mostly call the low level tool when needed. This is <em>advanced-package-tools</em>.</p>
+<p>The Debian family has two levels of package management: the low level <code>dpkg</code> and the high level <code>apt-get</code>. The high level tool will mostly call the low level tool when needed. This is <em>advanced-package-tools</em>.</p>
 <div id="operations" class="section level3">
 <h3>Operations</h3>
 <ul>
@@ -253,7 +271,7 @@ img {
 <p>Control of groups is managed through the <code>/etc/group</code> file.</p>
 <p><code>useradd</code> will add a new user. <code>userdel</code> will remove a user. Use the <code>-r</code> option to remove the home directory.</p>
 <p><code>id</code> gives user info.</p>
-<p><code>su</code> substitute or switch user. <code>sudo</code> super user. Configeration files are in <code>etc/sudoers</code>and <code>etc/sudoers.d</code> directory.</p>
+<p><code>su</code> substitute or switch user. <code>sudo</code> super user. Configuration files are in <code>etc/sudoers</code>and <code>etc/sudoers.d</code> directory.</p>
 <p>First the <code>/etc/profile</code> is read and then the following files are searched</p>
 <ul>
 <li><code>~/.bash/profile</code></li>
@@ -263,7 +281,7 @@ img {
 </div>
 <div id="environmental-variables" class="section level3">
 <h3>Environmental variables</h3>
-<p>Some can be set by the user. An environemnt variable is a character string that contains information that is used by an application. <code>set</code>, <code>env</code> and <code>export</code> are the ways to view the environment variable.</p>
+<p>Some can be set by the user. An environment variable is a character string that contains information that is used by an application. <code>set</code>, <code>env</code> and <code>export</code> are the ways to view the environment variable.</p>
 <p>The <code>PATH</code> is an ordered list of directories that will be scanned when a command is given. A null directory or <code>./</code> is the current directory.</p>
 <p><strong>Prompt Statement</strong> is used to customise the prompt string. <code>PS1</code> is the primary prompt variable. Changes</p>
 <ul>
@@ -277,7 +295,7 @@ img {
 <div id="command-history" class="section level3">
 <h3>Command history</h3>
 <p>This is kept in <code>~/.bash_histry</code>. It is possible to use <code>!!</code> or bang-bang to execute previous command. <code>CTRL-R</code> search history.</p>
-<p>Keyboard shortcuts</p>
+<p>Keyboard short cuts</p>
 <ul>
 <li>CTRL-L: Clears the screen</li>
 <li>CTRL-D: Exits current shell</li>
@@ -303,7 +321,7 @@ img {
 <li>1 for execute</li>
 </ul>
 <p>So 6 for read and write</p>
-<p><code>chmod 755 test1</code> would read and execute acess to all and read, write and execute access to owner.</p>
+<p><code>chmod 755 test1</code> would read and execute access to all and read, write and execute access to owner.</p>
 </div>
 </div>
 <div id="networking" class="section level2">
@@ -315,13 +333,13 @@ img {
 </ul>
 <p>There are five classes of network address: A, B and C have two components: Network address (Net ID) and Host address (Host ID). D is for special multicast and E is reserved for future use.</p>
 <ul>
-<li><p>Class A uses the first octet as the Net ID and the rest as Host ID. The first bit of the first Octet is set to zero and 000000 and 111111 are reserved, so there are only 126 Class A networks available. Each class A network can have upto 16.7 million hosts. The range of host addresses is from 1.0.0.0 to 127.255.255.255 (note the value of an octet or 8-bits can range from 0 to 255)</p></li>
-<li><p>Class B address use the first two octets as theri Net ID and the last two as the Host ID. The first two digits of the rist octet are always 1,0 so there is maximum of 16,384 (4 bits) Class B networks. The rist octet runs from 128 to 191 so the range of host addresses is 128.0.0.0 to 191.255.255.255.</p></li>
+<li><p>Class A uses the first octet as the Net ID and the rest as Host ID. The first bit of the first Octet is set to zero and 000000 and 111111 are reserved, so there are only 126 Class A networks available. Each class A network can have up to 16.7 million hosts. The range of host addresses is from 1.0.0.0 to 127.255.255.255 (note the value of an octet or 8-bits can range from 0 to 255)</p></li>
+<li><p>Class B address use the first two octets as their Net ID and the last two as the Host ID. The first two digits of the first octet are always 1,0 so there is maximum of 16,384 (4 bits) Class B networks. The first octet runs from 128 to 191 so the range of host addresses is 128.0.0.0 to 191.255.255.255.</p></li>
 <li><p>Class C addresses use the first three octets. The first two digits are 110. The first octet has values from 192 to 223. They range from 192.0.0.0 to 223.255.255.255</p></li>
 </ul>
-<p>IP addresses can be asigned manually or dunamically. The Dynamic Host Configuration Protocol (DHCP) is used to assignm IP addresses. <strong>ipcal</strong> can be used to calcualte manufal IP addresse.</p>
-<p><strong>Name Resolution</strong> is used to convert numerical IP address values to human-readable format known as <strong>hostname</strong>. For example, 140.211.169.4 is the numerical IP address for <strong>linuxfondation.org</strong>. The <strong>localhost</strong> is associated with the IP address 127.0.0.1 and descibes the machine that you are on.</p>
-<p><code>cat /etc/hosts</code> will give the contents of the <code>cat/etc/resolv.conf</code>. To look up hosts <code>host linuxfoundation.org</code> will display the IP address for linuxfoundation. *<strong>Network interfaces</strong> These are connection channels between a device and a network. Physically, the proceed through a network interface card(NIC). <code>ifconfig</code> command will report interfaces. Network configuration files will ensure that the interfaces function correctly. These will be in <code>/etc/network/interfaces/</code>. <code>/etc/init.d/networkingstart</code> will start networking configuration. To view the IP address, <code>/sbin/ip addr show</code>. To view routing informatio, <code>/sbin/ip route show</code></p>
+<p>IP addresses can be signed manually or dynamically. The Dynamic Host Configuration Protocol (DHCP) is used to assign IP addresses. <strong>ipcal</strong> can be used to calculate manual IP address.</p>
+<p><strong>Name Resolution</strong> is used to convert numerical IP address values to human-readable format known as <strong>hostname</strong>. For example, 140.211.169.4 is the numerical IP address for <strong>linuxfondation.org</strong>. The <strong>localhost</strong> is associated with the IP address 127.0.0.1 and describes the machine that you are on.</p>
+<p><code>cat /etc/hosts</code> will give the contents of the <code>cat/etc/resolv.conf</code>. To look up hosts <code>host linuxfoundation.org</code> will display the IP address for linuxfoundation. *<strong>Network interfaces</strong> These are connection channels between a device and a network. Physically, the proceed through a network interface card(NIC). <code>ifconfig</code> command will report interfaces. Network configuration files will ensure that the interfaces function correctly. These will be in <code>/etc/network/interfaces/</code>. <code>/etc/init.d/networkingstart</code> will start networking configuration. To view the IP address, <code>/sbin/ip addr show</code>. To view routing information, <code>/sbin/ip route show</code></p>
 <p><code>ping &lt;hostname&gt;</code> will check whether a host can receive and broadcast data.</p>
 <div id="routing" class="section level3">
 <h3>Routing</h3>
@@ -340,7 +358,7 @@ img {
 </div>
 <div id="browsers" class="section level2">
 <h2>Browsers</h2>
-<p>Download without using a browswer. Use <code>wget</code></p>
+<p>Download without using a browser. Use <code>wget</code></p>
 <ul>
 <li>Large files</li>
 <li>Recursive downloads (one refers to another)</li>
@@ -356,12 +374,12 @@ img {
 <p>Command line ftp clients</p>
 <ul>
 <li>ftp</li>
-<li>sftp: uses secure shell (ssh). Encripts data but does not work with analymous clients like ftp.</li>
+<li>sftp: uses secure shell (ssh). Encrypts data but does not work with anonymous clients like ftp.</li>
 <li>ncftp</li>
 <li>yafc</li>
 </ul>
-<p><code>ftp -p aristotle.learningmate.com</code> will make connection, ask for username and password and make the link. To look at files and transwer use <code>ls</code> and <code>get</code>.</p>
-<p><strong>secure shell (SSH)</strong> is used for secure data communication. To run <code>my_command</code> on remote system via SSH, use <code>ssh &lt;remote system? my_command</code>. You may be asked for a password but this may also be overriden.</p>
+<p><code>ftp -p aristotle.learningmate.com</code> will make connection, ask for username and password and make the link. To look at files and transfer use <code>ls</code> and <code>get</code>.</p>
+<p><strong>secure shell (SSH)</strong> is used for secure data communication. To run <code>my_command</code> on remote system via SSH, use <code>ssh &lt;remote system? my_command</code>. You may be asked for a password but this may also be overridden.</p>
 <p>Files can be moved using <strong>secured copy (scp)</strong>. To copy a local file to a remote system, <code>scp &lt;local file&gt; &lt;user@remotesystem&gt;:/home/user</code></p>
 <div id="manipulating-text" class="section level3">
 <h3>Manipulating text</h3>
@@ -387,12 +405,12 @@ img {
 <li><code>-i s/pattern/replace_string/ file/g</code> same but same but save changes</li>
 <li><code>-i s/pattern/replace_string/ file/g file1 &gt; file2</code> same but safer because changes can be inspected before deletion of old file</li>
 </ul>
-<p>Use <code>awk</code> to extract specific contents of a file. * <code>awk 'command' var=value file</code> specify a commmand at the command line * <code>awk -f scriptfile var=value file</code> specify a script file * <code>awk '{ print $0 }' /etc/passwd</code> print entire file * <code>awk -F: '{ print $1 }' /etc/passwd</code> Print first field (column) of every line * <code>awk -F: '{ print $1 $6}' /etc/passwd</code> Print first and sixth field of every line</p>
+<p>Use <code>awk</code> to extract specific contents of a file. * <code>awk 'command' var=value file</code> specify a command at the command line * <code>awk -f scriptfile var=value file</code> specify a script file * <code>awk '{ print $0 }' /etc/passwd</code> print entire file * <code>awk -F: '{ print $1 }' /etc/passwd</code> Print first field (column) of every line * <code>awk -F: '{ print $1 $6}' /etc/passwd</code> Print first and sixth field of every line</p>
 </div>
 </div>
 <div id="file-management" class="section level2">
 <h2>File management</h2>
-<p>File manipulation programmes * <code>sort</code> Arrange lines of text according to the sort key. <code>-u</code> will sort only unique. * <code>uniq</code> Remove duplicate lines. Must be consequtive (therefore run sort first). <code>uniq -c</code> will count the duplicate lines * <code>paste</code> joins two files together. <code>-d</code> specifies the delimiters; delimiters can be “space”, “tab”, “|” etc;<code>-s</code> append rather than horizontal join. * <code>join</code> joins two files based on a common field. * <code>split</code> will split a file into equal size segments. This will leave the original file and will break into 1000 line segments.</p>
+<p>File manipulation programmes * <code>sort</code> Arrange lines of text according to the sort key. <code>-u</code> will sort only unique. * <code>uniq</code> Remove duplicate lines. Must be consecutive (therefore run sort first). <code>uniq -c</code> will count the duplicate lines * <code>paste</code> joins two files together. <code>-d</code> specifies the delimiters; delimiters can be “space”, “tab”, “|” etc;<code>-s</code> append rather than horizontal join. * <code>join</code> joins two files based on a common field. * <code>split</code> will split a file into equal size segments. This will leave the original file and will break into 1000 line segments.</p>
 <div id="regular-expressions" class="section level3">
 <h3>Regular expressions</h3>
 <ul>
@@ -400,10 +418,10 @@ img {
 <li>a|z Match a or z</li>
 <li>$ Match end of string</li>
 <li><ul>
-<li>Match preceeding item 0 or more times</li>
+<li>Match preceding item 0 or more times</li>
 </ul></li>
 </ul>
-<p>Example: “The quick brown fox jumpted over the lazy dog”</p>
+<p>Example: “The quick brown fox jumped over the lazy dog”</p>
 <ul>
 <li>a.. matches “azy”</li>
 <li>b.|j. matches both “br” and “ju”</li>
@@ -459,13 +477,13 @@ img {
 <p>Linux standard for printing is <strong>Common UNIX printing system</strong> (CUPS).</p>
 <ul>
 <li>Scheduler: Manages the print jobs.<br /></li>
-<li>COnfiguration: scheduler reads configuration files. The most important are <strong>cupsd.conf</strong> (mostly for security and access rights) and <strong>printers.conf</strong>. These are stored in <code>/etc/cups/</code>.<br /></li>
+<li>Configuration: scheduler reads configuration files. The most important are <strong>cupsd.conf</strong> (mostly for security and access rights) and <strong>printers.conf</strong>. These are stored in <code>/etc/cups/</code>.<br /></li>
 <li><code>ip</code> or <code>ipr</code> commands can be used to print from the command line</li>
 <li><code>ip &lt;filename&gt;</code> prints file.</li>
 <li><code>ip -d printer &lt;filemame&gt;</code> prints to a specific printer</li>
 <li><code>programme | lp echo string | lp</code> prints the output of a programme</li>
-<li><code>lpq -a</code> show the que status</li>
-<li><code>lpaadmin</code> configure que status</li>
+<li><code>lpq -a</code> show the queue status</li>
+<li><code>lpaadmin</code> configure queue status</li>
 </ul>
 </div>
 <div id="introduction-to-scripts" class="section level1">
@@ -487,7 +505,7 @@ img {
 <ul>
 <li><h1>used for comments</h1></li>
 <li> used to continue on to next line</li>
-<li>; to have a second commmand on same line</li>
+<li>; to have a second command on same line</li>
 <li>$ indicates that what follows is a variable</li>
 <li>joining commands wit &amp;&amp; will stop subsequent actions when one fails</li>
 <li>joining commands with || will continue until one command succeeds</li>
@@ -513,16 +531,16 @@ display &quot;Bob&quot;</code></pre>
 <div id="commands-can-be-divided-into-the-following-categories" class="section level3">
 <h3>Commands can be divided into the following categories</h3>
 <ul>
-<li>Compiled applications: binary executable files that are on the filesystem. The shell script always has access to things like <code>rm</code>, <code>ls</code>, <code>df</code>, <code>vi</code>, <code>gzip</code>.</li>
+<li>Compiled applications: binary executable files that are on the file system. The shell script always has access to things like <code>rm</code>, <code>ls</code>, <code>df</code>, <code>vi</code>, <code>gzip</code>.</li>
 <li>Built in <strong>bash</strong> commands: built-in bash commands that can be used in the shell. These include <code>cd</code>, <code>pwd</code>, <code>read</code>, <code>logout</code>, <code>printf</code>, <code>let</code>. A complete list is found on <code>bash man</code>.</li>
 <li>Other scripts</li>
 </ul>
 </div>
 <div id="command-substitution" class="section level3">
 <h3>Command substitution</h3>
-<p>Sometimes it is necessary to substitute the result of a command to the inoput of another commmand. THered are two methods</p>
+<p>Sometimes it is necessary to substitute the result of a command to the input of another command. There are two methods</p>
 <ul>
-<li>Enclosing the inner command with backticks (`)</li>
+<li>Enclosing the inner command with back ticks (`)</li>
 <li>Enclosing the inner command in $</li>
 </ul>
 <p>Example <code>cd /lib/modules/$(uname -r)/</code> The output of the command <code>umame -r</code> becomes the argument for cd.</p>
@@ -534,7 +552,7 @@ display &quot;Bob&quot;</code></pre>
 </div>
 <div id="exporting-variables" class="section level3">
 <h3>Exporting variables</h3>
-<p>Variables that are created are only available to that script. To make them more widely available, they must be promosted to <strong>environment variables</strong> using the <code>export</code> command.</p>
+<p>Variables that are created are only available to that script. To make them more widely available, they must be promoted to <strong>environment variables</strong> using the <code>export</code> command.</p>
 <p>Example <code>export VAR=value</code> or <code>VAR=value; export VAR</code></p>
 </div>
 <div id="script-parameters" class="section level3">
@@ -559,7 +577,7 @@ echo &quot;The name of the second argument is:&quot; $2</code></pre>
 </div>
 <div id="input-redirection" class="section level3">
 <h3>Input redirection</h3>
-<p>Just as output can be rediected, input can be taken from another file. The <code>&lt;</code> is used for input.</p>
+<p>Just as output can be redirected, input can be taken from another file. The <code>&lt;</code> is used for input.</p>
 <pre><code>#!/bin/bash
 echo &quot;Line Count&quot;
 wc -l &lt; /temp/free.cut</code></pre>
@@ -568,7 +586,7 @@ wc -l &lt; /temp/free.cut</code></pre>
 </div>
 <div id="constructs" class="section level2">
 <h2>Constructs</h2>
-<p>The if statement will be based on numeric or string comparisons, truth or faliure and file existence.</p>
+<p>The if statement will be based on numeric or string comparisons, truth or failure and file existence.</p>
 <pre><code>if condition
 then
   statement
@@ -580,16 +598,16 @@ fi</code></pre>
 then
   echo &quot;/etcpassed exists&quot;
 fi</code></pre>
-<p>List of things that could be checke</p>
+<p>List of things that could be checked</p>
 <ul>
 <li><code>-a file</code> does file exist</li>
 <li><code>-d file</code> is file a directory</li>
 <li><code>-f file</code> is it a regular file (not symbolic link)</li>
 <li><code>s file</code> is it of non-zero size</li>
-<li><code>g file</code> hs sgid set?</li>
+<li><code>g file</code> has sgid set?</li>
 <li><code>-u file</code> has suid set?</li>
 <li><code>-r file</code> is file readable</li>
-<li><code>-w file</code> is file writable</li>
+<li><code>-w file</code> is file writeable</li>
 <li><code>x file</code> is it executable</li>
 </ul>
 <p><code>man l test</code> will give the full list</p>
@@ -602,6 +620,138 @@ fi</code></pre>
 <li><code>-ge</code> greater or equal than</li>
 <li><code>-le</code> less of equal to</li>
 </ul>
+</div>
+</div>
+<div id="advanced-bash-scripting" class="section level1">
+<h1>Advanced bash scripting</h1>
+<div id="string-manipulation" class="section level2">
+<h2>String manipulation</h2>
+<p>Basic string operations</p>
+<ul>
+<li>[[ strin1 &gt; string2 ]] compares the sorting order of string1 and string2</li>
+<li>[[string 1 == string 2]] compare characters in two strings</li>
+<li>myLen1={#string1} saves the length of string1 in variable myLen1</li>
+</ul>
+</div>
+<div id="boolean-expressions" class="section level2">
+<h2>Boolean expressions</h2>
+<ul>
+<li>&amp;&amp; AND only if both conditions are true</li>
+<li>|| OR only is one of the conditions is true</li>
+<li>NOT only if condition is false</li>
+</ul>
+</div>
+<div id="the-case-statement" class="section level2">
+<h2>The case statement</h2>
+<p>Can be used as an alternative to if statements and can simplify code. The basic structure is</p>
+<p><code>case expression in    pattern1) execute commands;;   pattern2) execute commands;;   pattern3) execute commands;;   * ) execute some default commands or nothing ;; esac</code> For example,</p>
+<pre><code>#!/bin/sh
+# Prompt user to enter a character
+echo &quot;Please enter a letter:&quot;
+read charac
+case &quot;$charac&quot; in 
+  &quot;a&quot;|&quot;A&quot; echo &quot;You have typed a vowel&quot; ;;
+  &quot;e&quot;|&quot;E&quot; echo &quot;You have typed a vowel&quot; ;;
+  &quot;i&quot;|&quot;I&quot; echo &quot;You have typed a vowel&quot; ;;
+  &quot;o&quot;|&quot;O&quot; echo &quot;You have typed a vowel&quot; ;;
+  &quot;u&quot;|&quot;U&quot; echo &quot;You have typed a vowel&quot; ;;
+  *)    echo &quot;You have typed a consonant&quot; ;;
+esac
+exit 0</code></pre>
+<div id="loops" class="section level3">
+<h3>Loops</h3>
+<p>There are three types of loop</p>
+<ul>
+<li>for</li>
+<li>while</li>
+<li>until</li>
+</ul>
+</div>
+<div id="script-debugging" class="section level3">
+<h3>Script debugging</h3>
+<p>This can be stated with the command <code>bash -x ./script_file</code></p>
+<p>Debugging can be set in the script with <code>set -x .. set +x</code></p>
+</div>
+<div id="redirecting-errors-to-file-and-screen" class="section level3">
+<h3>Redirecting errors to file and screen</h3>
+<p>There are three file streams</p>
+<ul>
+<li>stdin standard input from the keyboard</li>
+<li>stout standard output (default screen)</li>
+<li>stderr standard error, where messages go</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="processes" class="section level1">
+<h1>Processes</h1>
+<p>Types of process</p>
+<ul>
+<li>Interactive: started by user (usually bash or Firefox etc)</li>
+<li>Batch process: Automatic or scheduled (FIFO). updatedb</li>
+<li>Daemons: server processes that run continuously. (httpd, xinetd, sshd)</li>
+<li>Threads: Lightweight processes. (genome-terminal, firefox)</li>
+<li>Kernel threads: Moving a thread from one part of CPU to another, ensuring that input, output processes have been completed.</li>
+</ul>
+<p>The <strong>scheduler</strong> will manage the <strong>run queue</strong> moving processes into and out of the CPU. Each process has a process id (<strong>PID</strong>). The person starting the process is identified with the Real User ID (<strong>RUID</strong>). Only one process can be run at at time. Processes have a priority. Priority is set by <strong>nicevalue</strong>. These run from -20 (highest priority) to 19 (lowest priority).</p>
+<p><code>ps</code> provides information about currently running processes. A repetitive update is supplied by <code>top</code> or <code>htop</code> or <code>atop</code>. There are a large number of options for <code>ps</code>. <code>ps -ef</code> will show all the processes.</p>
+<p><code>pstree</code> shows all the processes running on the system as a tree diagram. To terminate a process <code>kill -SIGKILL &lt;pid&gt;</code> or <code>kill -9 &lt;pid&gt;</code>.</p>
+<div id="top" class="section level3">
+<h3>top</h3>
+<ul>
+<li>first line of <code>top</code> summary of what is happening, how long running, how many users, load average. Load average of 1.0 is fully subscribed but not over-loaded. * second line of <code>top</code>: total number of processes, number running, stopped and zombied.</li>
+<li>third line: how CPU is being divided between users (us) and system (sy).<br /></li>
+<li>Fourth and Fifth: show memory usage (RAM - line 4) and swap space (5). Swapping onto the hard drive slows things down.</li>
+</ul>
+<p>Keys an be used to change <code>top</code> behaviour.</p>
+<ul>
+<li>t display or hide information (lines 2 or 3)</li>
+<li>m display or hide information (lines 4 or 5)</li>
+<li>A Sort processes by top resource consumers</li>
+<li>r renice (change priority)</li>
+<li>k kill specific process</li>
+<li>f enter top configuration screen</li>
+<li>c interactively enter a new sort order.</li>
+</ul>
+</div>
+<div id="load-average" class="section level3">
+<h3>Load average</h3>
+<p><strong>Load average</strong> is the average of the <strong>load number</strong>. It can be obtained by running <code>top</code>, <code>w</code> or <code>uptime</code>.</p>
+<p>There are three numbers</p>
+<ul>
+<li>Average load of the system (past minute) as percentage.</li>
+<li>Utilisation for the past 5 minutes</li>
+<li>Utilisation for the last 15 minutes</li>
+</ul>
+<p>The figure can be more than 100%. There may be more than one CPU. Jobs can be run in the foreground or background. A job is just a command launched from the terminal window. Background jobs have lower priority. This is useful if they are going to take a long time. <code>bg</code> will run in background, <code>bf</code> will run in the foreground. <code>CNTR-Z</code> will suspend a job, <code>CNTR-C</code> will terminate a job.</p>
+<p>The <code>jobs</code> utility will display the jobs running in the background. <code>jobs -l</code> provides information about the jobs.</p>
+</div>
+<div id="future-scheduling" class="section level3">
+<h3>Future scheduling</h3>
+<p><code>at</code> utility can exercise a command in the future. For example <code>at now + 2 days</code> will do something in two days time. Use <code>CNTR-D</code> to process.</p>
+</div>
+<div id="cron" class="section level2">
+<h2>Cron</h2>
+<p><code>cron</code> is a time-based scheduling utility. It is driven by a configuration file <code>/etc/crontab</code>. <code>contab -e</code> will open the editor.</p>
+<p>There are 6 fields</p>
+<ul>
+<li>MIN: Minutes: 0:59</li>
+<li>HOUR: Hour 0 to 23</li>
+<li>DOM: day of month (1-31)</li>
+<li>MON: month (1-12)</li>
+<li>DOW: day of week (0-6 with 0 = Sunday)</li>
+<li>CMD: Command (Any command to be executed)</li>
+</ul>
+<p>For example <code>******/usr/local/execute/script.sh</code> will schedule a script to be run every minute.</p>
+<p><code>sleep</code> can suspend a device for a specific time. This can be seconds (s), minutes (m), hours (h) or days (d). <code>at</code> will start an application at a later date.</p>
+<div id="common-applications" class="section level3">
+<h3>Common Applications</h3>
+</div>
+</div>
+<div id="internet" class="section level2">
+<h2>Internet</h2>
+<p>Firefox and chromium are the main browsers.</p>
+<p>Email applications * Internet Message Access Protocol (IMAP) * Post office Protocol (POP)</p>
 </div>
 </div>
 

@@ -21,7 +21,7 @@ The main sources of information
 
 ### Man pages
 Various options
-1. `-f` will dispaly all files that contain the word in the argument
+1. `-f` will display all files that contain the word in the argument
 2. `-k` will display all discussion even if the word is not used
 
 Man pages are divided into 9 chapters. The chapter number can be forced by the number.  The `a` parameter will display all manual pages with the given name.
@@ -43,7 +43,7 @@ Typing `info` with no arguments in the command line gives a list of topics. `inf
 Will tend to provide short information.  For example, to find out about manual `man --help`
 
 ###Other
-`gnome help` will provide specific help about the particular linux family. 
+`gnome help` will provide specific help about the particular Linux family. 
 
 ##Command line
 `X Window` can be turned off. There are 7 `virtual terminals`.  Access by `CTRL-ALT-F6`
@@ -61,7 +61,7 @@ Usually there are three components: command, options and arguments.  Options are
 * login
 * mkdir
 
-Best to shutdown with `shutdown`, the `init` process will control the shutting down. `shutdown -r` will reboot. Usually, executable programmes are in `/bin/usr/bin/` to find where programmes are use `which <prog>` or `whereis <prog>`.  
+Best to shut-down with `shutdown`, the `init` process will control the shutting down. `shutdown -r` will reboot. Usually, executable programmes are in `/bin/usr/bin/` to find where programmes are use `which <prog>` or `whereis <prog>`.  
 
 ###Utilities
 * `cd ~` move to home directory
@@ -72,10 +72,10 @@ Best to shutdown with `shutdown`, the `init` process will control the shutting d
 * `cd/` Change to root directory
 * `ls` list files and directories
 * `ls -a ` list all files (including hidden)
-* `tree` view of filesystem
+* `tree` view of file system
 * `ln` can create soft or hard links
 
-Move directories to the stack with `pushd .` to move to that first entry in the stack type `pop`.  However, it is best to use `pushd +1` for the first element and `pushd + 2` for the second element.  This will preseve the stack, while `pop` will clear.  Look [here](http://www.eriwen.com/bash/pushd-and-popd/)
+Move directories to the stack with `pushd .` to move to that first entry in the stack type `pop`.  However, it is best to use `pushd +1` for the first element and `pushd + 2` for the second element.  This will preserve the stack, while `pop` will clear.  Look [here](http://www.eriwen.com/bash/pushd-and-popd/)
 
 ###Standard file streams
 * standard input `stdin`
@@ -92,8 +92,8 @@ Move directories to the stack with `pushd .` to move to that first entry in the 
 * `locate` uses the `updatedb` programme.  This can be run once a day but can be initiated 
 at any time
 * `find` will find from current directory. `-name` will find only particular name, `-type` will find only particular type.
-** `find -name ".swp" -exec rm {} ':'` will remove all the fils with swp extension by sending them to {} to have rm executed on them.
-* `-exec` is s modifiction that will allow you to execute commands on the result of the `find`
+** `find -name ".swp" -exec rm {} ':'` will remove all the files with swp extension by sending them to {} to have rm executed on them.
+* `-exec` is s modification that will allow you to execute commands on the result of the `find`
 
 ###Matching files
 * `?` match any singe character
@@ -107,14 +107,14 @@ at any time
 ###Working with files
 * `cat` view short files and link together
 * `tac` look file backwards
-* `less` view larget file with paging programme (use / to serarch)
+* `less` view larger file with paging programme (use / to search)
 * `tail` print last 10 lines. 
 * `head`
-* `touch` will modify the file's timestamp to the current time.  Can also be used to create a new file. 
-* `rm` will remove a file `-i` interactivey will ask for confirmation for each file. 
+* `touch` will modify the file's timestamps to the current time.  Can also be used to create a new file. 
+* `rm` will remove a file `-i` interactive will ask for confirmation for each file. 
 
 ##Package management
-The debian family has two levels of package management: the low level `dpkg` and the high level `apt-get`. The high level tool will mostly call the low level tool when needed. This is *advanced-package-tools*. 
+The Debian family has two levels of package management: the low level `dpkg` and the high level `apt-get`. The high level tool will mostly call the low level tool when needed. This is *advanced-package-tools*. 
 
 ### Operations
 * install package: `dpkg --install foo.deb`
@@ -139,7 +139,7 @@ Control of groups is managed through the `/etc/group` file.
 
 `id` gives user info. 
 
-`su` substitute or switch user. `sudo` super user. Configeration files are in `etc/sudoers`and `etc/sudoers.d` directory. 
+`su` substitute or switch user. `sudo` super user. Configuration files are in `etc/sudoers`and `etc/sudoers.d` directory. 
 
 First the `/etc/profile` is read and then the following files are searched 
 
@@ -148,7 +148,7 @@ First the `/etc/profile` is read and then the following files are searched
 * `~/.profile`
 
 ###Environmental variables
-Some can be set by the user. An environemnt variable is a character string that contains information that is used by an application. `set`, `env` and `export` are the ways to view the environment variable. 
+Some can be set by the user. An environment variable is a character string that contains information that is used by an application. `set`, `env` and `export` are the ways to view the environment variable. 
 
 The `PATH` is an ordered list of directories that will be scanned when a command is given. A null directory or `./` is the current directory. 
 
@@ -163,7 +163,7 @@ The `PATH` is an ordered list of directories that will be scanned when a command
 ### Command history
 This is kept in `~/.bash_histry`.  It is possible to use `!!` or bang-bang to execute previous command. `CTRL-R` search history. 
 
-Keyboard shortcuts
+Keyboard short cuts
 
 * CTRL-L: Clears the screen
 * CTRL-D: Exits current shell
@@ -190,7 +190,7 @@ The codes for permissions
 
 So 6 for read and write
 
-`chmod 755 test1` would read and execute acess to all and read, write and execute access to owner. 
+`chmod 755 test1` would read and execute access to all and read, write and execute access to owner. 
 
 ## Networking
 
@@ -201,19 +201,19 @@ Devices in a network need a unique network address identifier.  This is known as
 
 There are five classes of network address:  A, B and C have two components: Network address (Net ID) and Host address (Host ID).  D is for special multicast and E is reserved for future use. 
 
-* Class A uses the first octet as the Net ID and the rest as Host ID. The first bit of the first Octet is set to zero and 000000 and 111111 are reserved, so there are only 126 Class A networks available.  Each class A network can have upto 16.7 million hosts.  The range of host addresses is from 1.0.0.0 to 127.255.255.255 (note the value of an octet or 8-bits can range from 0 to 255)
+* Class A uses the first octet as the Net ID and the rest as Host ID. The first bit of the first Octet is set to zero and 000000 and 111111 are reserved, so there are only 126 Class A networks available.  Each class A network can have up to 16.7 million hosts.  The range of host addresses is from 1.0.0.0 to 127.255.255.255 (note the value of an octet or 8-bits can range from 0 to 255)
 
-* Class B address use the first two octets as theri Net ID and the last two as the Host ID. The first two digits of the rist octet are always 1,0 so there is maximum of 16,384 (4 bits) Class B networks.  The rist octet runs from 128 to 191 so the range of host addresses is 128.0.0.0 to 191.255.255.255.
+* Class B address use the first two octets as their Net ID and the last two as the Host ID. The first two digits of the first octet are always 1,0 so there is maximum of 16,384 (4 bits) Class B networks.  The first octet runs from 128 to 191 so the range of host addresses is 128.0.0.0 to 191.255.255.255.
 
 * Class C addresses use the first three octets. The first two digits are 110.  The first octet has values from 192 to 223.  They range from 192.0.0.0 to 223.255.255.255
 
-IP addresses can be asigned manually or dunamically. The Dynamic Host Configuration Protocol (DHCP) is used to assignm IP addresses. **ipcal** can be used to calcualte manufal IP addresse.  
+IP addresses can be signed manually or dynamically. The Dynamic Host Configuration Protocol (DHCP) is used to assign IP addresses. **ipcal** can be used to calculate manual IP address.  
 
-**Name Resolution** is used to convert numerical IP address values to human-readable format known as **hostname**. For example, 140.211.169.4 is the numerical IP address for **linuxfondation.org**.  The **localhost** is associated with the IP address 127.0.0.1 and descibes the machine that you are on. 
+**Name Resolution** is used to convert numerical IP address values to human-readable format known as **hostname**. For example, 140.211.169.4 is the numerical IP address for **linuxfondation.org**.  The **localhost** is associated with the IP address 127.0.0.1 and describes the machine that you are on. 
 
 `cat /etc/hosts` will give the contents of the `cat/etc/resolv.conf`.  To look up hosts `host linuxfoundation.org` will display the IP address for linuxfoundation. 
 ***Network interfaces**
-These are connection channels between a device and a network. Physically, the proceed through a network interface card(NIC). `ifconfig` command will report interfaces.  Network configuration files will ensure that the interfaces function correctly.  These will be in `/etc/network/interfaces/`.   `/etc/init.d/networkingstart` will start networking configuration. To view the IP address, `/sbin/ip addr show`.   To view routing informatio, `/sbin/ip route show`
+These are connection channels between a device and a network. Physically, the proceed through a network interface card(NIC). `ifconfig` command will report interfaces.  Network configuration files will ensure that the interfaces function correctly.  These will be in `/etc/network/interfaces/`.   `/etc/init.d/networkingstart` will start networking configuration. To view the IP address, `/sbin/ip addr show`.   To view routing information, `/sbin/ip route show`
 
 `ping <hostname>` will check whether a host can receive and broadcast data.
 
@@ -229,7 +229,7 @@ A network has nodes and the **routing tables** show the IP address of each node 
 * `iptraf` monitors network traffic. 
 
 ## Browsers
-Download without using a browswer.  Use `wget`
+Download without using a browser.  Use `wget`
 
 * Large files
 * Recursive downloads (one refers to another)
@@ -246,13 +246,13 @@ File transfer protocol: ftp. Client-server model uses a server and a number of c
 Command line ftp clients
 
 * ftp
-* sftp: uses secure shell (ssh).  Encripts data but does not work with analymous clients like ftp.
+* sftp: uses secure shell (ssh).  Encrypts data but does not work with anonymous clients like ftp.
 * ncftp
 * yafc
 
-`ftp -p aristotle.learningmate.com` will make connection, ask for username and password and make the link.  To look at files and transwer use `ls` and `get`. 
+`ftp -p aristotle.learningmate.com` will make connection, ask for username and password and make the link.  To look at files and transfer use `ls` and `get`. 
 
-**secure shell (SSH)** is used for secure data communication. To run `my_command` on remote system via SSH, use `ssh <remote system? my_command`.  You may be asked for a password but this may also be overriden. 
+**secure shell (SSH)** is used for secure data communication. To run `my_command` on remote system via SSH, use `ssh <remote system? my_command`.  You may be asked for a password but this may also be overridden. 
 
 Files can be moved using **secured copy (scp)**.  To copy a local file to a remote system, `scp <local file> <user@remotesystem>:/home/user`
 
@@ -280,7 +280,7 @@ Use `sed` as one text editor.
 * `-i s/pattern/replace_string/ file/g file1 > file2` same but safer because changes can be inspected before deletion of old file
 
 Use `awk` to extract specific contents of a file. 
-* `awk 'command' var=value file` specify a commmand at the command line
+* `awk 'command' var=value file` specify a command at the command line
 * `awk -f scriptfile var=value file` specify a script file
 * `awk '{ print $0 }' /etc/passwd` print entire file
 * `awk -F: '{ print $1 }' /etc/passwd` Print first field (column) of every line
@@ -290,7 +290,7 @@ Use `awk` to extract specific contents of a file.
 ##File management
 File manipulation programmes
 * `sort` Arrange lines of text according to the sort key. `-u` will sort only unique.
-* `uniq` Remove duplicate lines.  Must be consequtive (therefore run sort first).  `uniq -c` will count the duplicate lines 
+* `uniq` Remove duplicate lines.  Must be consecutive (therefore run sort first).  `uniq -c` will count the duplicate lines 
 * `paste` joins two files together. `-d` specifies the delimiters; delimiters can be "space", "tab", "|" etc;`-s` append rather than horizontal join.
 * `join` joins two files based on a common field. 
 * `split` will split a file into equal size segments. This will leave the original file and will break into 1000 line segments. 
@@ -299,9 +299,9 @@ File manipulation programmes
 * (dot) Match any single character
 * a|z Match a or z
 * $ Match end of string
-* * Match preceeding item 0 or more times
+* * Match preceding item 0 or more times
 
-Example: "The quick brown fox jumpted over the lazy dog"
+Example: "The quick brown fox jumped over the lazy dog"
 
 * a.. matches "azy"
 * b.|j. matches both "br" and "ju"
@@ -347,13 +347,13 @@ These can be loaded using `less` this does not put it into memory.
 Linux standard for printing is **Common UNIX printing system** (CUPS). 
 
 * Scheduler: Manages the print jobs.  
-* COnfiguration:  scheduler reads configuration files. The most important are **cupsd.conf** (mostly for security and access rights) and **printers.conf**. These are stored in `/etc/cups/`.  
+* Configuration:  scheduler reads configuration files. The most important are **cupsd.conf** (mostly for security and access rights) and **printers.conf**. These are stored in `/etc/cups/`.  
 * `ip` or `ipr` commands can be used to print from the command line
 * `ip <filename>` prints file.
 * `ip -d printer <filemame>` prints to a specific printer
 * `programme | lp echo string | lp` prints the output of a programme
-* `lpq -a` show the que status
-* `lpaadmin` configure que status
+* `lpq -a` show the queue status
+* `lpaadmin` configure queue status
 
 # Introduction to scripts
 Use shell scripts.  Most common is *bash*.  Shell is a **commanline interpreter**.  
@@ -376,7 +376,7 @@ Choices are listed in `/etc/shells`.  The default is bash. This can be overridde
 ## Special characters
 * # used for comments
 * \ used to continue on to next line
-* ; to have a second commmand on same line
+* ; to have a second command on same line
 * $ indicates that what follows is a variable
 * joining commands wit && will stop subsequent actions when one fails
 * joining commands with || will continue until one command succeeds
@@ -404,14 +404,14 @@ display "Bob"
 ```
 
 ###Commands can be divided into the following categories
-* Compiled applications: binary executable files that are on the filesystem. The shell script always has access to things like `rm`, `ls`, `df`, `vi`, `gzip`. 
+* Compiled applications: binary executable files that are on the file system. The shell script always has access to things like `rm`, `ls`, `df`, `vi`, `gzip`. 
 * Built in **bash** commands: built-in bash commands that can be used in the shell. These include `cd`, `pwd`, `read`, `logout`, `printf`, `let`. A complete list is found on `bash man`. 
 * Other scripts
 
 ###Command substitution
-Sometimes it is necessary to substitute the result of a command to the inoput of another commmand. THered are two methods
+Sometimes it is necessary to substitute the result of a command to the input of another command. There are two methods
 
-* Enclosing the inner command with backticks (`)
+* Enclosing the inner command with back ticks (`)
 * Enclosing the inner command in $
 
 Example 
@@ -425,7 +425,7 @@ Environment variables supply inputs, validation and control behaviour. A list of
 `MYCOLOR=blue` sets the MYCOLOR environment variable as blue. 
 
 ###Exporting variables
-Variables that are created are only available to that script.  To make them more widely available, they must be promosted to **environment variables** using the `export` command. 
+Variables that are created are only available to that script.  To make them more widely available, they must be promoted to **environment variables** using the `export` command. 
 
 Example
 `export VAR=value` or `VAR=value; export VAR`
@@ -451,7 +451,7 @@ echo "The name of the second argument is:" $2
 The character `>` is used to write the output of a file to another file.  `free > /tmp/free.out` will send the output of fee to the free-out file. `>>` will append the file. 
 
 ###Input redirection
-Just as output can be rediected, input can be taken from another file. The `<` is used for input. 
+Just as output can be redirected, input can be taken from another file. The `<` is used for input. 
 
 ```
 #!/bin/bash
@@ -461,7 +461,7 @@ wc -l < /temp/free.cut
 will count the lines in free.cut
 
 ## Constructs
-The if statement will be based on numeric or string comparisons, truth or faliure and file existence. 
+The if statement will be based on numeric or string comparisons, truth or failure and file existence. 
 
 ```
 if condition
@@ -478,16 +478,16 @@ then
   echo "/etcpassed exists"
 fi
 ```
-List of things that could be checke
+List of things that could be checked
 
 * `-a file` does file exist
 * `-d file` is file a directory
 * `-f file` is it a regular file (not symbolic link)
 * `s file` is it of non-zero size
-* `g file` hs sgid set?
+* `g file` has sgid set?
 * `-u file` has suid set?
 * `-r file` is file readable
-* `-w file` is file writable
+* `-w file` is file writeable
 * `x file` is it executable
 
 `man l test` will give the full list
@@ -501,13 +501,137 @@ Numerical tests
 * `-ge` greater or equal than
 * `-le` less of equal to
 
+#Advanced bash scripting
+##String manipulation
+Basic string operations
 
+* [[ strin1 > string2 ]] compares the sorting order of string1 and string2
+* [[string 1 == string 2]] compare characters in two strings
+* myLen1={#string1} saves the length of string1 in variable myLen1
 
+##Boolean expressions
 
+* && AND only if both conditions are true
+* || OR only is one of the conditions is true
+* | NOT only if condition is false
 
+##The case statement
+Can be used as an alternative to if statements and can simplify code. The basic structure is 
 
+`
+case expression in 
+  pattern1) execute commands;;
+  pattern2) execute commands;;
+  pattern3) execute commands;;
+  * ) execute some default commands or nothing
+;;
+esac
+`
+For example, 
 
-  
+```
+#!/bin/sh
+# Prompt user to enter a character
+echo "Please enter a letter:"
+read charac
+case "$charac" in 
+  "a"|"A" echo "You have typed a vowel" ;;
+  "e"|"E" echo "You have typed a vowel" ;;
+  "i"|"I" echo "You have typed a vowel" ;;
+  "o"|"O" echo "You have typed a vowel" ;;
+  "u"|"U" echo "You have typed a vowel" ;;
+  *)    echo "You have typed a consonant" ;;
+esac
+exit 0
+```
+###Loops
+There are three types of loop
 
+* for
+* while
+* until
 
+###Script debugging
+This can be stated with the command
+`bash -x ./script_file` 
+
+Debugging can be set in the script with `set -x .. set +x`
+
+###Redirecting errors to file and screen
+
+There are three file streams
+
+* stdin standard input from the keyboard
+* stout standard output (default screen)
+* stderr standard error, where messages go
+
+# Processes
+Types of process
+
+* Interactive:  started by user (usually bash or Firefox etc)
+* Batch process: Automatic or scheduled (FIFO). updatedb
+* Daemons: server processes that run continuously. (httpd, xinetd, sshd)
+* Threads: Lightweight processes.  (genome-terminal, firefox)
+* Kernel threads:  Moving a thread from one part of CPU to another, ensuring that input, output processes have been completed. 
+
+The **scheduler** will manage the **run queue** moving processes into and out of the CPU.  Each process has a process id (**PID**). The person starting the process is identified with the Real User ID (**RUID**).  Only one process can be run at at time.  Processes have a priority. Priority is set by **nicevalue**.  These run from -20 (highest priority) to 19 (lowest priority). 
+
+`ps` provides information about currently running processes. A repetitive update is supplied by `top` or `htop` or `atop`. There are a large number of options for `ps`. `ps -ef` will show all the processes.  
+
+`pstree` shows all the processes running on the system as a tree diagram. To terminate a process `kill -SIGKILL <pid>` or `kill -9 <pid>`.  
+
+###top
+* first line of `top` summary of what is happening, how long running, how many users, load average. Load average of 1.0 is fully subscribed but not over-loaded. * second line of `top`:  total number of processes, number running, stopped and zombied. 
+* third line: how CPU is being divided between users (us) and system (sy).  
+* Fourth and Fifth: show memory usage (RAM - line 4) and swap space (5). Swapping onto the hard drive slows things down. 
+
+Keys an be used to change `top` behaviour. 
+
+* t display or hide information (lines 2 or 3)
+* m display or hide information (lines 4 or 5)
+* A Sort processes by top resource consumers
+* r renice (change priority)
+* k kill specific process
+* f enter top configuration screen
+* c interactively enter a new sort order. 
+
+###Load average
+**Load average** is the average of the **load number**. It can be obtained by running `top`, `w` or `uptime`.  
+
+There are three numbers 
+
+* Average load of the system (past minute) as percentage. 
+* Utilisation for the past 5 minutes
+* Utilisation for the last 15 minutes
+
+The figure can be more than 100\%.  There may be more than one CPU. Jobs can be run in the foreground or background.  A job is just a command launched from the terminal window.  Background jobs have lower priority.  This is useful if they are going to take a long time. `bg` will run in background, `bf` will run in the foreground.  `CNTR-Z` will suspend a job, `CNTR-C` will terminate a job. 
+
+The `jobs` utility will display the jobs running in the background. `jobs -l` provides information about the jobs. 
+
+###Future scheduling
+`at` utility can exercise a command in the future. For example `at now + 2 days` will do something in two days time. Use `CNTR-D` to process. 
+
+##Cron
+`cron` is a time-based scheduling utility. It is driven by a configuration file `/etc/crontab`. `contab -e` will open the editor. 
+
+There are 6 fields
+
+* MIN: Minutes: 0:59
+* HOUR: Hour 0 to 23
+* DOM: day of month (1-31)
+* MON: month (1-12)
+* DOW: day of week (0-6 with 0 = Sunday)
+* CMD: Command (Any command to be executed)
+
+For example `******/usr/local/execute/script.sh` will schedule a script to be run every minute. 
+
+`sleep` can suspend a device for a specific time. This can be seconds (s), minutes (m), hours (h) or days (d). `at` will start an application at a later date.  
+
+###Common Applications
+##Internet
+Firefox and chromium are the main browsers. 
+
+Email applications
+* Internet Message Access Protocol (IMAP)
+* Post office Protocol (POP)
 
